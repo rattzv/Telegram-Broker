@@ -316,11 +316,6 @@ namespace SocialApp___Telegram_Broker
             button23.Visible = false;
         }
 
-        private void Button19_Click_1(object sender, EventArgs e)
-        {
-            
-        }
-
         private void Button24_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("explorer", Application.StartupPath + @"\Parser");

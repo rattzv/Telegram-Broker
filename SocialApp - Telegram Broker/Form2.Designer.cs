@@ -1779,7 +1779,6 @@
             this.button19.TabIndex = 32;
             this.button19.Text = "Стоп";
             this.button19.UseVisualStyleBackColor = false;
-            this.button19.Click += new System.EventHandler(this.Button19_Click_1);
             // 
             // bunifuCustomTextbox5
             // 
