@@ -27,16 +27,10 @@ namespace SocialApp___Telegram_Broker
         }
         public static string parsAPI(string chatname, Form2 FormPars)
         {
-            FormPars.label54.Invoke(new Action(() => FormPars.label54.Text = " выполняется..."));
-            if (FormPars.bunifuCustomTextbox5.InvokeRequired)
-            {
-                FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Начало работы" + Environment.NewLine)));
-            }
+            FormPars.label54.Invoke(new Action(() => FormPars.label54.Text = "выполняется..."));
+            FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Начало работы" + Environment.NewLine)));
             string url = "https://kzac.ru/bot/api/parser/index.php";
-            if (FormPars.bunifuCustomTextbox5.InvokeRequired)
-            {
-                FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Подготовка запроса..." + Environment.NewLine)));
-            }
+            FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Подготовка запроса..." + Environment.NewLine)));
             using (var webClient = new WebClient())
             {
                 string filenameLoad = "parse-" + DateTime.Now.ToString("HH-mm-ss") + ".json";
@@ -52,7 +46,7 @@ namespace SocialApp___Telegram_Broker
                     var response = webClient.UploadValues(url, pars);
                     string str_response = System.Text.Encoding.UTF8.GetString(response);
                     FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Ответ сервера получен. Анализ данных..." + Environment.NewLine)));
-                    if (str_response != null)
+                    if ((str_response != null) && (str_response != "error"))
                     {
                         FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Загрузка файла..." + Environment.NewLine)));
                         Directory.CreateDirectory(Application.StartupPath + @"\fullfilearray_system");
@@ -60,13 +54,37 @@ namespace SocialApp___Telegram_Broker
                         Uri ui = new Uri(str_response);
                         path = Application.StartupPath + @"\fullfilearray_system\" + ui.Segments[5];
                         wc.DownloadFile(ui, path);
-                            FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Загрузка завершена" + Environment.NewLine)));
+                        FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Загрузка завершена" + Environment.NewLine)));
+                    }
+                    else {
+                        FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Сервер вернул ошибку, проверьте входные данные. Если ошибка повторяется - обратитесь к администрации." + Environment.NewLine)));
+                        return "error";
                     }
                     return path;
                 }
                 catch
                 {
-                    return "Ok";
+                    for (int s=0; s < 30; s++) {
+                        try
+                        {
+                            FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Время ожидания ответа сервера истекло. Поиск результатов на сервере..." + Environment.NewLine)));
+                            FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Загрузка файла..." + Environment.NewLine)));
+                            Directory.CreateDirectory(Application.StartupPath + @"\fullfilearray_system");
+                            WebClient wc = new WebClient();
+                            Uri ui = new Uri("https://kzac.ru/bot/api/parser/parseDone/" + filenameLoad);
+                            string path = Application.StartupPath + @"\fullfilearray_system\" + ui.Segments[5];
+                            wc.DownloadFile(ui, path);
+                            FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Загрузка завершена" + Environment.NewLine)));
+                            return path;
+                        }
+                        catch {
+                            FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Таймаут - 5 секунд." + Environment.NewLine)));
+                            System.Threading.Thread.Sleep(5 * 1000);
+                        }
+                    }
+                    FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Сервер вернул ошибку, проверьте входные данные. Если ошибка повторяется - обратитесь к администрации." + Environment.NewLine)));
+                    return "error";
+
                 }
             }
         }

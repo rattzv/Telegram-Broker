@@ -258,11 +258,16 @@ namespace SocialApp___Telegram_Broker
             {
                 bunifuCustomDataGrid1.Rows.Clear();
                 string result = await Task.Factory.StartNew<string>(() => parsing.parsAPI(chatname, FormPars), TaskCreationOptions.LongRunning);
-                if (result != null) {
+                if (result != "error")
+                {
                     string JsonDecode = await Task.Factory.StartNew<string>(() => parsing.convertJsonToDataGrid(result, FormPars, usernameCheck, wasRecently, wasAWeekAgo, wasAMonthAgo, minTime, maxTime, status_flag), TaskCreationOptions.LongRunning);
                     button22.Visible = true;
                     button23.Visible = true;
                     button24.Visible = true;
+                }
+                else {
+                    MessageBox.Show("Ошибка, обработки запроса, попробуйте еще раз.");
+                    bunifuMaterialTextbox4.Text = "";
                 }
             }
             else {
