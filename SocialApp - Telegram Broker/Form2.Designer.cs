@@ -182,6 +182,7 @@
             this.panel13 = new System.Windows.Forms.Panel();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.label71 = new System.Windows.Forms.Label();
+            this.label73 = new System.Windows.Forms.Label();
             this.label70 = new System.Windows.Forms.Label();
             this.label72 = new System.Windows.Forms.Label();
             this.label69 = new System.Windows.Forms.Label();
@@ -219,7 +220,6 @@
             this.bunifuImageButton3 = new Bunifu.Framework.UI.BunifuImageButton();
             this.bunifuImageButton2 = new Bunifu.Framework.UI.BunifuImageButton();
             this.bunifuImageButton1 = new Bunifu.Framework.UI.BunifuImageButton();
-            this.label73 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -2292,14 +2292,14 @@
             // 
             // tabPage10
             // 
-            this.tabPage10.Controls.Add(this.bunifuImageButton3);
+            this.tabPage10.Controls.Add(this.bunifuCustomDataGrid1);
             this.tabPage10.Controls.Add(this.label71);
             this.tabPage10.Controls.Add(this.label73);
             this.tabPage10.Controls.Add(this.label70);
             this.tabPage10.Controls.Add(this.label72);
             this.tabPage10.Controls.Add(this.label69);
             this.tabPage10.Controls.Add(this.label68);
-            this.tabPage10.Controls.Add(this.bunifuCustomDataGrid1);
+            this.tabPage10.Controls.Add(this.bunifuImageButton3);
             this.tabPage10.Location = new System.Drawing.Point(4, 4);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
@@ -2321,6 +2321,19 @@
             this.label71.TabIndex = 3;
             this.label71.Text = "Сейчас онлайн - ";
             this.label71.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label73
+            // 
+            this.label73.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label73.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(40)))), ((int)(((byte)(59)))));
+            this.label73.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label73.Location = new System.Drawing.Point(747, 38);
+            this.label73.Margin = new System.Windows.Forms.Padding(3);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(204, 45);
+            this.label73.TabIndex = 3;
+            this.label73.Text = "Получено строк - 9999";
+            this.label73.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label70
             // 
@@ -2876,19 +2889,6 @@
             this.bunifuImageButton1.Zoom = 0;
             this.bunifuImageButton1.Click += new System.EventHandler(this.BunifuImageButton1_Click);
             // 
-            // label73
-            // 
-            this.label73.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label73.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(40)))), ((int)(((byte)(59)))));
-            this.label73.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label73.Location = new System.Drawing.Point(747, 38);
-            this.label73.Margin = new System.Windows.Forms.Padding(3);
-            this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(204, 45);
-            this.label73.TabIndex = 3;
-            this.label73.Text = "Получено строк - 9999";
-            this.label73.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2901,10 +2901,12 @@
             this.Controls.Add(this.panel2);
             this.ForeColor = System.Drawing.Color.Transparent;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "SocialApp - Telegram Brocker";
+            this.Text = "Telegram Broker";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

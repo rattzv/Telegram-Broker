@@ -46,25 +46,32 @@ namespace SocialApp___Telegram_Broker
                     var response = webClient.UploadValues(url, pars);
                     string str_response = System.Text.Encoding.UTF8.GetString(response);
                     FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Ответ сервера получен. Анализ данных..." + Environment.NewLine)));
-                    if ((str_response != null) && (str_response != "error"))
+                    if (str_response == "limit")
                     {
-                        FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Загрузка файла..." + Environment.NewLine)));
-                        Directory.CreateDirectory(Application.StartupPath + @"\fullfilearray_system");
-                        WebClient wc = new WebClient();
-                        Uri ui = new Uri(str_response);
-                        path = Application.StartupPath + @"\fullfilearray_system\" + ui.Segments[5];
-                        wc.DownloadFile(ui, path);
-                        FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Загрузка завершена" + Environment.NewLine)));
+                        return "limit";
                     }
                     else {
-                        FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Сервер вернул ошибку, проверьте входные данные. Если ошибка повторяется - обратитесь к администрации." + Environment.NewLine)));
-                        return "error";
+                        if ((str_response != null) && (str_response != "error"))
+                        {
+                            FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Загрузка файла..." + Environment.NewLine)));
+                            Directory.CreateDirectory(Application.StartupPath + @"\fullfilearray_system");
+                            WebClient wc = new WebClient();
+                            Uri ui = new Uri(str_response);
+                            path = Application.StartupPath + @"\fullfilearray_system\" + ui.Segments[5];
+                            wc.DownloadFile(ui, path);
+                            FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Загрузка завершена" + Environment.NewLine)));
+                            return path;
+                        }
+                        else
+                        {
+                            FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Сервер вернул ошибку, проверьте входные данные. Если ошибка повторяется - обратитесь к администрации." + Environment.NewLine)));
+                            return "error";
+                        }
                     }
-                    return path;
                 }
                 catch
                 {
-                    for (int s=0; s < 30; s++) {
+                    for (int s=0; s < 25; s++) {
                         try
                         {
                             FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Время ожидания ответа сервера истекло. Поиск результатов на сервере..." + Environment.NewLine)));
@@ -129,12 +136,15 @@ namespace SocialApp___Telegram_Broker
                     maxTime = unixTimestamp - (maxTime * 60);
                     for (int n = 0; n < FormPars.bunifuCustomDataGrid1.RowCount; n++)
                     {
-                        if ((Convert.ToInt32(FormPars.bunifuCustomDataGrid1[5, n].Value) <= minTime) & (Convert.ToInt32(FormPars.bunifuCustomDataGrid1[5, n].Value) >= maxTime))
+                        if (Convert.ToString(FormPars.bunifuCustomDataGrid1[4, n].Value) == "userStatusOffline")
                         {
-                        }
-                        else
-                        {
-                            FormPars.bunifuCustomDataGrid1.Invoke(new Action(() => FormPars.bunifuCustomDataGrid1.Rows.RemoveAt(n--)));
+                            if ((Convert.ToInt32(FormPars.bunifuCustomDataGrid1[5, n].Value) <= minTime) & (Convert.ToInt32(FormPars.bunifuCustomDataGrid1[5, n].Value) >= maxTime))
+                            {
+                            }
+                            else
+                            {
+                                FormPars.bunifuCustomDataGrid1.Invoke(new Action(() => FormPars.bunifuCustomDataGrid1.Rows.RemoveAt(n--)));
+                            }
                         }
                     }
                     break;
@@ -143,12 +153,15 @@ namespace SocialApp___Telegram_Broker
                     maxTime = unixTimestamp - (maxTime * 3600);
                     for (int n = 0; n < FormPars.bunifuCustomDataGrid1.RowCount; n++)
                     {
-                        if ((Convert.ToInt32(FormPars.bunifuCustomDataGrid1[5, n].Value) >= minTime) & (Convert.ToInt32(FormPars.bunifuCustomDataGrid1[5, n].Value) <= maxTime))
+                        if (Convert.ToString(FormPars.bunifuCustomDataGrid1[4, n].Value) == "userStatusOffline")
                         {
-                        }
-                        else
-                        {
-                            FormPars.bunifuCustomDataGrid1.Invoke(new Action(() => FormPars.bunifuCustomDataGrid1.Rows.RemoveAt(n--)));
+                            if ((Convert.ToInt32(FormPars.bunifuCustomDataGrid1[5, n].Value) <= minTime) & (Convert.ToInt32(FormPars.bunifuCustomDataGrid1[5, n].Value) >= maxTime))
+                            {
+                            }
+                            else
+                            {
+                                FormPars.bunifuCustomDataGrid1.Invoke(new Action(() => FormPars.bunifuCustomDataGrid1.Rows.RemoveAt(n--)));
+                            }
                         }
                     }
                     break;
@@ -157,11 +170,15 @@ namespace SocialApp___Telegram_Broker
                     maxTime = unixTimestamp - (maxTime * 86400);
                     for (int n = 0; n < FormPars.bunifuCustomDataGrid1.RowCount; n++)
                     {
-                        if ((Convert.ToInt32(FormPars.bunifuCustomDataGrid1[5, n].Value) >= minTime) & (Convert.ToInt32(FormPars.bunifuCustomDataGrid1[5, n].Value) <= maxTime))
+                        if (Convert.ToString(FormPars.bunifuCustomDataGrid1[4, n].Value) == "userStatusOffline")
                         {
-                        }
-                        else {
-                            FormPars.bunifuCustomDataGrid1.Invoke(new Action(() => FormPars.bunifuCustomDataGrid1.Rows.RemoveAt(n--)));
+                            if ((Convert.ToInt32(FormPars.bunifuCustomDataGrid1[5, n].Value) <= minTime) & (Convert.ToInt32(FormPars.bunifuCustomDataGrid1[5, n].Value) >= maxTime))
+                            {
+                            }
+                            else
+                            {
+                                FormPars.bunifuCustomDataGrid1.Invoke(new Action(() => FormPars.bunifuCustomDataGrid1.Rows.RemoveAt(n--)));
+                            }
                         }
                     }
                     break;

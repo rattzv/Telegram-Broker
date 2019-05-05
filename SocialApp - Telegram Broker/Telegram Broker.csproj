@@ -7,7 +7,7 @@
     <ProjectGuid>{6254A3B0-0412-496B-8381-C83F153F22B8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>SocialApp___Telegram_Broker</RootNamespace>
-    <AssemblyName>SocialApp - Telegram Broker</AssemblyName>
+    <AssemblyName>Telegram Broker</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -37,6 +37,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>SocialApp___Telegram_Broker.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bunifu_UI_v1.5.3">
@@ -173,6 +176,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8_left_round_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

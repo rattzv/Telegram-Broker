@@ -233,15 +233,12 @@ namespace SocialApp___Telegram_Broker
                 e.Handled = true;
             }
         }
-
         private void Button15_Click(object sender, EventArgs e)
         {
             bunifuCustomTextbox3.AppendText("[" + DateTime.Now + "] - " + "Программа запущена" + Environment.NewLine);
         }
-
         private async void BunifuImageButton3_Click(object sender, EventArgs e)
         {
-            
             button22.Visible = false;
             button23.Visible = false;
             button24.Visible = false;
@@ -258,16 +255,22 @@ namespace SocialApp___Telegram_Broker
             {
                 bunifuCustomDataGrid1.Rows.Clear();
                 string result = await Task.Factory.StartNew<string>(() => parsing.parsAPI(chatname, FormPars), TaskCreationOptions.LongRunning);
-                if (result != "error")
+                MessageBox.Show(result);
+                if (result == "error")
+                {
+                    MessageBox.Show("Ошибка, обработки запроса, попробуйте еще раз.");
+                    bunifuMaterialTextbox4.Text = "";
+                }
+                else if (result == "limit") {
+                    MessageBox.Show("Лимит парсинга! Поробуйте позднее или чат с меньшим количеством участников. ");
+                    bunifuMaterialTextbox4.Text = "";
+                }
+                else
                 {
                     string JsonDecode = await Task.Factory.StartNew<string>(() => parsing.convertJsonToDataGrid(result, FormPars, usernameCheck, wasRecently, wasAWeekAgo, wasAMonthAgo, minTime, maxTime, status_flag), TaskCreationOptions.LongRunning);
                     button22.Visible = true;
                     button23.Visible = true;
                     button24.Visible = true;
-                }
-                else {
-                    MessageBox.Show("Ошибка, обработки запроса, попробуйте еще раз.");
-                    bunifuMaterialTextbox4.Text = "";
                 }
             }
             else {
