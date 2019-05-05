@@ -168,6 +168,12 @@
   <ItemGroup>
     <None Include="Resources\icons8_opened_folder_40px.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_left_arrow_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_left_round_40px.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"$(SolutionDir)\ILMerge\merge_all.bat" "$(SolutionDir)" "$(TargetPath)" $(ConfigurationName)</PostBuildEvent>

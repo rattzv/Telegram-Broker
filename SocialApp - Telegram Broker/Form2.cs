@@ -325,5 +325,13 @@ namespace SocialApp___Telegram_Broker
         {
             System.Diagnostics.Process.Start("explorer", Application.StartupPath + @"\Parser");
         }
+
+        private void BunifuImageButton3_Click_1(object sender, EventArgs e)
+        {
+            panel4.Height = button2.Height;
+            panel4.Top = button2.Top;
+            tabControl1.SelectedIndex = 3;
+            label4.Text = "Парсер";
+        }
     }
 }

@@ -63,8 +63,8 @@ namespace SocialApp___Telegram_Broker
                     }
                 }
             }
-            FormPars.notifyIcon1.Icon = System.Drawing.SystemIcons.Application;
-            FormPars.notifyIcon1.ShowBalloonTip(1000, "Файл успешно сохранен по пути 'Parser/"+ fileName+"'", "Файл сохранен", ToolTipIcon.Info);
+            FormPars.PushMessage.Icon = System.Drawing.SystemIcons.Application;
+            FormPars.PushMessage.ShowBalloonTip(1000, "Файл успешно сохранен по пути 'Parser/"+ fileName+"'", "Файл сохранен", ToolTipIcon.Info);
         }
     }
 }

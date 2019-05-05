@@ -93,6 +93,26 @@ namespace SocialApp___Telegram_Broker.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_left_arrow_40px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_left_arrow_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_left_round_40px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_left_round_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_opened_folder_40px {
             get {
                 object obj = ResourceManager.GetObject("icons8_opened_folder_40px", resourceCulture);

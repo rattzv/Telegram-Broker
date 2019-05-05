@@ -84,7 +84,6 @@ namespace SocialApp___Telegram_Broker
                     }
                     FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Сервер вернул ошибку, проверьте входные данные. Если ошибка повторяется - обратитесь к администрации." + Environment.NewLine)));
                     return "error";
-
                 }
             }
         }
@@ -218,6 +217,7 @@ namespace SocialApp___Telegram_Broker
                     }
                 }
             }
+            FormPars.label73.Invoke(new Action(() => FormPars.label73.Text = "Получено строк - " + FormPars.bunifuCustomDataGrid1.RowCount));
             FormPars.label54.Invoke(new Action(() => FormPars.label54.Text = " обработано 100%"));
             FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Парсинг завершен." + Environment.NewLine)));
             FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Получено участников (с учетом фильтрации): " + Convert.ToString(FormPars.bunifuCustomDataGrid1.RowCount) + Environment.NewLine)));
@@ -226,8 +226,8 @@ namespace SocialApp___Telegram_Broker
             FormPars.bunifuDropdown8.Invoke(new Action(() => FormPars.bunifuDropdown8.Visible = true));
             FormPars.button22.Invoke(new Action(() => FormPars.button22.Visible = true));
             FormPars.button23.Invoke(new Action(() => FormPars.button23.Visible = true));
-            FormPars.notifyIcon1.Icon = System.Drawing.SystemIcons.Application;
-            FormPars.notifyIcon1.ShowBalloonTip(1000, "Парсинг участников группы - " + list.Title + " завершен", "Парсинг завершен", ToolTipIcon.Info);
+            FormPars.PushMessage.Icon = System.Drawing.SystemIcons.Application;
+            FormPars.PushMessage.ShowBalloonTip(1000, "Парсинг участников группы - " + list.Title + " завершен", "Парсинг завершен", ToolTipIcon.Info);
             return "Ok";
         }
     }
