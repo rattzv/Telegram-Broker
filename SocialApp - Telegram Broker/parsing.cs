@@ -130,7 +130,7 @@ namespace SocialApp___Telegram_Broker
                     maxTime = unixTimestamp - (maxTime * 60);
                     for (int n = 0; n < FormPars.bunifuCustomDataGrid1.RowCount; n++)
                     {
-                        if ((Convert.ToInt32(FormPars.bunifuCustomDataGrid1[5, n].Value) >= minTime) & (Convert.ToInt32(FormPars.bunifuCustomDataGrid1[5, n].Value) <= maxTime))
+                        if ((Convert.ToInt32(FormPars.bunifuCustomDataGrid1[5, n].Value) <= minTime) & (Convert.ToInt32(FormPars.bunifuCustomDataGrid1[5, n].Value) >= maxTime))
                         {
                         }
                         else
