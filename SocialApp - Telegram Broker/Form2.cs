@@ -255,14 +255,14 @@ namespace SocialApp___Telegram_Broker
             {
                 bunifuCustomDataGrid1.Rows.Clear();
                 string result = await Task.Factory.StartNew<string>(() => parsing.parsAPI(chatname, FormPars), TaskCreationOptions.LongRunning);
-                MessageBox.Show(result);
                 if (result == "error")
                 {
                     MessageBox.Show("Ошибка, обработки запроса, попробуйте еще раз.");
                     bunifuMaterialTextbox4.Text = "";
                 }
                 else if (result == "limit") {
-                    MessageBox.Show("Лимит парсинга! Поробуйте позднее или чат с меньшим количеством участников. ");
+                    FormPars.PushMessage.ShowBalloonTip(1000, "Максимальное число участников чата для парсинга - 10 000", "Ошибка: лимит парсинга", ToolTipIcon.Warning);
+                    bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Ошибка: лимит парсинга!" + "\n" + "Максимальное число участников чата для парсинга - 10 000." + Environment.NewLine);
                     bunifuMaterialTextbox4.Text = "";
                 }
                 else

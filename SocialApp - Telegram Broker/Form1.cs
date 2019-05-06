@@ -91,7 +91,6 @@ namespace SocialApp___Telegram_Broker
                 if (EmailValidate_status == true)
                 {
                     string result = await Task.Factory.StartNew<string>(() => x4526.ProcessAuth(login, password), TaskCreationOptions.LongRunning);
-                    MessageBox.Show(result.ToString());
                     switch (result)
                     {
                         case "not_found":
