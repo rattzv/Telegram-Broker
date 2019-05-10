@@ -103,7 +103,7 @@ namespace SocialApp___Telegram_Broker
                 }
             }
         }
-        public static string convertJsonToDataGrid(string result, Form2 FormPars, bool usernameCheck, bool wasRecently, bool wasAWeekAgo, bool wasAMonthAgo, int minTime, int maxTime, string status_flag)
+        public static string convertJsonToDataGrid(string result, Form2 FormPars, bool usernameCheck, bool wasRecently, bool wasAWeekAgo, bool wasAMonthAgo, int minTime, int maxTime, string status_flag, string parsingOnly)
         {
             int minTimeIn = minTime;
             int userOnline = 0;
@@ -122,9 +122,11 @@ namespace SocialApp___Telegram_Broker
                     {
                         FormPars.bunifuCustomDataGrid1.Invoke(new Action(() => FormPars.bunifuCustomDataGrid1.Rows.Add(r.User.FirstName, r.User.LastName, r.User.Username, r.Role, r.User.Status.Empty, r.User.Status.WasOnline)));
                     }
+                }
+                else if (r.User.Status == null) {
                     if (r.User.Type == "bot")
                     {
-                        FormPars.bunifuCustomDataGrid1.Invoke(new Action(() => FormPars.bunifuCustomDataGrid1.Rows.Add(r.User.FirstName, r.User.LastName, r.User.Username, r.Role, "BOT", "BOT")));
+                        FormPars.bunifuCustomDataGrid1.Invoke(new Action(() => FormPars.bunifuCustomDataGrid1.Rows.Add(r.User.FirstName, r.User.LastName, r.User.Username, r.User.Type, "BOT", "BOT")));
                     }
                 }
                 i++;
@@ -225,6 +227,46 @@ namespace SocialApp___Telegram_Broker
                     }
                     break;
             }
+            switch (parsingOnly) {
+                case "только боты":
+                    for (int n = 0; n < FormPars.bunifuCustomDataGrid1.RowCount; n++)
+                    {
+                        if (Convert.ToString(FormPars.bunifuCustomDataGrid1[3, n].Value) != "bot")
+                        {
+                            FormPars.bunifuCustomDataGrid1.Invoke(new Action(() => FormPars.bunifuCustomDataGrid1.Rows.RemoveAt(n--)));
+                        }
+                    }
+                    break;
+                case "только пользователи":
+                    for (int n = 0; n < FormPars.bunifuCustomDataGrid1.RowCount; n++)
+                    {
+                        if (Convert.ToString(FormPars.bunifuCustomDataGrid1[3, n].Value) != "user")
+                        {
+                            FormPars.bunifuCustomDataGrid1.Invoke(new Action(() => FormPars.bunifuCustomDataGrid1.Rows.RemoveAt(n--)));
+                        }
+                    }
+                    break;
+                case "только администраторы":
+                    for (int n = 0; n < FormPars.bunifuCustomDataGrid1.RowCount; n++)
+                    {
+                        if ((Convert.ToString(FormPars.bunifuCustomDataGrid1[3, n].Value) != "admin") & (Convert.ToString(FormPars.bunifuCustomDataGrid1[3, n].Value) != "creator"))
+                        {
+                            FormPars.bunifuCustomDataGrid1.Invoke(new Action(() => FormPars.bunifuCustomDataGrid1.Rows.RemoveAt(n--)));
+                        }
+                    }
+                    break;
+                case "всех":
+                    break;
+                case "всех, кроме ботов":
+                    for (int n = 0; n < FormPars.bunifuCustomDataGrid1.RowCount; n++)
+                    {
+                        if (Convert.ToString(FormPars.bunifuCustomDataGrid1[3, n].Value) == "bot")
+                        {
+                            FormPars.bunifuCustomDataGrid1.Invoke(new Action(() => FormPars.bunifuCustomDataGrid1.Rows.RemoveAt(n--)));
+                        }
+                    }
+                    break;
+            }
             if (usernameCheck == true)
             {
                 for (int n = 0; n < FormPars.bunifuCustomDataGrid1.RowCount; n++)
@@ -274,7 +316,6 @@ namespace SocialApp___Telegram_Broker
             FormPars.bunifuDropdown8.Invoke(new Action(() => FormPars.bunifuDropdown8.Visible = true));
             FormPars.button22.Invoke(new Action(() => FormPars.button22.Visible = true));
             FormPars.button23.Invoke(new Action(() => FormPars.button23.Visible = true));
-            FormPars.PushMessage.Icon = System.Drawing.SystemIcons.Application;
             FormPars.PushMessage.ShowBalloonTip(1000, "Парсинг участников группы - " + list.Title + " завершен", "Парсинг завершен", ToolTipIcon.Info);
             return "Ok";
         }

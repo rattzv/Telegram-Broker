@@ -137,7 +137,6 @@
             this.label65 = new System.Windows.Forms.Label();
             this.label56 = new System.Windows.Forms.Label();
             this.button18 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
             this.bunifuCustomTextbox5 = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.label54 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
@@ -220,6 +219,7 @@
             this.label68 = new System.Windows.Forms.Label();
             this.bunifuImageButton3 = new Bunifu.Framework.UI.BunifuImageButton();
             this.PushMessage = new System.Windows.Forms.NotifyIcon(this.components);
+            this.button19 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -529,6 +529,7 @@
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(59)))));
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.button12);
+            this.panel3.Controls.Add(this.button19);
             this.panel3.Controls.Add(this.button9);
             this.panel3.Location = new System.Drawing.Point(220, 25);
             this.panel3.Name = "panel3";
@@ -1253,7 +1254,6 @@
             this.panel8.Controls.Add(this.label65);
             this.panel8.Controls.Add(this.label56);
             this.panel8.Controls.Add(this.button18);
-            this.panel8.Controls.Add(this.button19);
             this.panel8.Controls.Add(this.bunifuCustomTextbox5);
             this.panel8.Controls.Add(this.label54);
             this.panel8.Controls.Add(this.label55);
@@ -1300,6 +1300,7 @@
             this.button21.TabIndex = 26;
             this.button21.Text = "+";
             this.button21.UseVisualStyleBackColor = false;
+            this.button21.Click += new System.EventHandler(this.Button21_Click);
             // 
             // button26
             // 
@@ -1315,6 +1316,7 @@
             this.button26.TabIndex = 26;
             this.button26.Text = "+";
             this.button26.UseVisualStyleBackColor = false;
+            this.button26.Click += new System.EventHandler(this.Button26_Click);
             // 
             // button20
             // 
@@ -1330,6 +1332,7 @@
             this.button20.TabIndex = 26;
             this.button20.Text = "-";
             this.button20.UseVisualStyleBackColor = false;
+            this.button20.Click += new System.EventHandler(this.Button20_Click);
             // 
             // button24
             // 
@@ -1405,12 +1408,13 @@
             this.bunifuCustomTextbox6.ForeColor = System.Drawing.Color.White;
             this.bunifuCustomTextbox6.Location = new System.Drawing.Point(226, 119);
             this.bunifuCustomTextbox6.Margin = new System.Windows.Forms.Padding(5);
-            this.bunifuCustomTextbox6.MaxLength = 4;
+            this.bunifuCustomTextbox6.MaxLength = 2;
             this.bunifuCustomTextbox6.Name = "bunifuCustomTextbox6";
             this.bunifuCustomTextbox6.Size = new System.Drawing.Size(20, 13);
             this.bunifuCustomTextbox6.TabIndex = 22;
             this.bunifuCustomTextbox6.Text = "0";
             this.bunifuCustomTextbox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.bunifuCustomTextbox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BunifuCustomTextbox6_KeyPress);
             // 
             // button27
             // 
@@ -1426,6 +1430,7 @@
             this.button27.TabIndex = 26;
             this.button27.Text = "-";
             this.button27.UseVisualStyleBackColor = false;
+            this.button27.Click += new System.EventHandler(this.Button27_Click);
             // 
             // bunifuCustomTextbox9
             // 
@@ -1438,7 +1443,7 @@
             this.bunifuCustomTextbox9.ForeColor = System.Drawing.Color.White;
             this.bunifuCustomTextbox9.Location = new System.Drawing.Point(322, 119);
             this.bunifuCustomTextbox9.Margin = new System.Windows.Forms.Padding(5);
-            this.bunifuCustomTextbox9.MaxLength = 4;
+            this.bunifuCustomTextbox9.MaxLength = 2;
             this.bunifuCustomTextbox9.Name = "bunifuCustomTextbox9";
             this.bunifuCustomTextbox9.Size = new System.Drawing.Size(20, 13);
             this.bunifuCustomTextbox9.TabIndex = 22;
@@ -1556,6 +1561,7 @@
             this.bunifuDropdown6.selectedIndex = 4;
             this.bunifuDropdown6.Size = new System.Drawing.Size(135, 28);
             this.bunifuDropdown6.TabIndex = 36;
+            this.bunifuDropdown6.onItemSelected += new System.EventHandler(this.BunifuDropdown6_onItemSelected);
             // 
             // panel15
             // 
@@ -1570,7 +1576,7 @@
             // 
             this.bunifuMaterialTextbox4.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.bunifuMaterialTextbox4.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.bunifuMaterialTextbox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.bunifuMaterialTextbox4.ForeColor = System.Drawing.Color.White;
             this.bunifuMaterialTextbox4.HintForeColor = System.Drawing.Color.White;
             this.bunifuMaterialTextbox4.HintText = "@chatname или http://t.me/chatname";
             this.bunifuMaterialTextbox4.isPassword = false;
@@ -1758,30 +1764,15 @@
             this.button18.FlatAppearance.BorderSize = 0;
             this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button18.Font = new System.Drawing.Font("Century Gothic", 11F);
-            this.button18.ForeColor = System.Drawing.Color.Transparent;
-            this.button18.Location = new System.Drawing.Point(741, 479);
+            this.button18.ForeColor = System.Drawing.Color.White;
+            this.button18.Location = new System.Drawing.Point(531, 479);
             this.button18.Margin = new System.Windows.Forms.Padding(5);
             this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(190, 50);
+            this.button18.Size = new System.Drawing.Size(400, 50);
             this.button18.TabIndex = 31;
             this.button18.Text = "Начать";
             this.button18.UseVisualStyleBackColor = false;
             this.button18.Click += new System.EventHandler(this.BunifuImageButton3_Click);
-            // 
-            // button19
-            // 
-            this.button19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(27)))), ((int)(((byte)(55)))));
-            this.button19.FlatAppearance.BorderSize = 0;
-            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button19.Font = new System.Drawing.Font("Century Gothic", 11F);
-            this.button19.ForeColor = System.Drawing.Color.Transparent;
-            this.button19.Location = new System.Drawing.Point(531, 479);
-            this.button19.Margin = new System.Windows.Forms.Padding(5);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(190, 50);
-            this.button19.TabIndex = 32;
-            this.button19.Text = "Стоп";
-            this.button19.UseVisualStyleBackColor = false;
             // 
             // bunifuCustomTextbox5
             // 
@@ -2805,13 +2796,13 @@
             this.label73.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label73.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(40)))), ((int)(((byte)(59)))));
             this.label73.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label73.Location = new System.Drawing.Point(747, 38);
+            this.label73.Location = new System.Drawing.Point(747, 39);
             this.label73.Margin = new System.Windows.Forms.Padding(3);
             this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(204, 45);
+            this.label73.Size = new System.Drawing.Size(204, 44);
             this.label73.TabIndex = 3;
             this.label73.Text = "Получено строк - 9999";
-            this.label73.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label73.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label70
             // 
@@ -2889,6 +2880,25 @@
             this.PushMessage.Icon = ((System.Drawing.Icon)(resources.GetObject("PushMessage.Icon")));
             this.PushMessage.Text = "Telegram Broker";
             this.PushMessage.Visible = true;
+            // 
+            // button19
+            // 
+            this.button19.FlatAppearance.BorderSize = 0;
+            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button19.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.button19.ForeColor = System.Drawing.Color.Transparent;
+            this.button19.Image = global::SocialApp___Telegram_Broker.Properties.Resources.icons8_user_male_circle_40px;
+            this.button19.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button19.Location = new System.Drawing.Point(578, 0);
+            this.button19.Name = "button19";
+            this.button19.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.button19.Size = new System.Drawing.Size(166, 65);
+            this.button19.TabIndex = 2;
+            this.button19.Text = "Учет";
+            this.button19.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button19.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.Button9_Click);
             // 
             // Form2
             // 
@@ -3088,7 +3098,6 @@
         private Bunifu.Framework.UI.BunifuSeparator bunifuSeparator7;
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Label label55;
         private System.Windows.Forms.DataGridViewTextBoxColumn firstname;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastname;
@@ -3142,5 +3151,6 @@
         public System.Windows.Forms.Button button24;
         private Bunifu.Framework.UI.BunifuImageButton bunifuImageButton3;
         public System.Windows.Forms.Label label73;
+        private System.Windows.Forms.Button button19;
     }
 }

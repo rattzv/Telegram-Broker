@@ -239,81 +239,58 @@ namespace SocialApp___Telegram_Broker
         }
         private async void BunifuImageButton3_Click(object sender, EventArgs e)
         {
-            button22.Visible = false;
-            button23.Visible = false;
-            button24.Visible = false;
-            int minTime = Convert.ToInt32(bunifuCustomTextbox6.Text);
-            int maxTime = Convert.ToInt32(bunifuCustomTextbox9.Text);
-            bool usernameCheck = bunifuCheckbox1.Checked;
-            bool wasRecently = bunifuCheckbox2.Checked;
-            bool wasAWeekAgo = bunifuCheckbox3.Checked;
-            bool wasAMonthAgo = bunifuCheckbox4.Checked;
-            string status_flag = bunifuDropdown6.selectedValue;
-            string chatname = bunifuMaterialTextbox4.Text;
-            bool flag = parsing.parsechat(chatname);
-            if (flag == true)
+            if (Convert.ToInt32(bunifuCustomTextbox6.Text) < Convert.ToInt32(bunifuCustomTextbox9.Text))
             {
-                bunifuCustomDataGrid1.Rows.Clear();
-                string result = await Task.Factory.StartNew<string>(() => parsing.parsAPI(chatname, FormPars), TaskCreationOptions.LongRunning);
-                if (result == "error")
+                button18.Text = "Ожидайте...";
+                button18.Enabled = false;
+                button22.Visible = false;
+                button23.Visible = false;
+                button24.Visible = false;
+                int minTime = Convert.ToInt32(bunifuCustomTextbox6.Text);
+                int maxTime = Convert.ToInt32(bunifuCustomTextbox9.Text);
+                bool usernameCheck = bunifuCheckbox1.Checked;
+                bool wasRecently = bunifuCheckbox2.Checked;
+                bool wasAWeekAgo = bunifuCheckbox3.Checked;
+                bool wasAMonthAgo = bunifuCheckbox4.Checked;
+                string status_flag = bunifuDropdown6.selectedValue;
+                string chatname = bunifuMaterialTextbox4.Text;
+                bool flag = parsing.parsechat(chatname);
+                string parsingOnly = bunifuDropdown7.selectedValue;
+                if (flag == true)
                 {
-                    MessageBox.Show("Ошибка, обработки запроса, попробуйте еще раз.");
-                    bunifuMaterialTextbox4.Text = "";
-                }
-                else if (result == "limit") {
-                    FormPars.PushMessage.ShowBalloonTip(1000, "Максимальное число участников чата для парсинга - 10 000", "Ошибка: лимит парсинга", ToolTipIcon.Warning);
-                    bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Ошибка: лимит парсинга!" + "\n" + "Максимальное число участников чата для парсинга - 10 000." + Environment.NewLine);
-                    bunifuMaterialTextbox4.Text = "";
+                    bunifuCustomDataGrid1.Rows.Clear();
+                    string result = await Task.Factory.StartNew<string>(() => parsing.parsAPI(chatname, FormPars), TaskCreationOptions.LongRunning);
+                    if (result == "error")
+                    {
+                        MessageBox.Show("Ошибка, обработки запроса, попробуйте еще раз.");
+                        bunifuMaterialTextbox4.Text = "";
+                    }
+                    else if (result == "limit")
+                    {
+                        FormPars.PushMessage.ShowBalloonTip(1000, "Максимальное число участников чата для парсинга - 10 000", "Ошибка: лимит парсинга", ToolTipIcon.Warning);
+                        bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Ошибка: лимит парсинга!" + "\n" + "Максимальное число участников чата для парсинга - 10 000." + Environment.NewLine);
+                        bunifuMaterialTextbox4.Text = "";
+                    }
+                    else
+                    {
+                        string JsonDecode = await Task.Factory.StartNew<string>(() => parsing.convertJsonToDataGrid(result, FormPars, usernameCheck, wasRecently, wasAWeekAgo, wasAMonthAgo, minTime, maxTime, status_flag, parsingOnly), TaskCreationOptions.LongRunning);
+                        button22.Visible = true;
+                        button23.Visible = true;
+                        button24.Visible = true;
+                    }
                 }
                 else
                 {
-                    string JsonDecode = await Task.Factory.StartNew<string>(() => parsing.convertJsonToDataGrid(result, FormPars, usernameCheck, wasRecently, wasAWeekAgo, wasAMonthAgo, minTime, maxTime, status_flag), TaskCreationOptions.LongRunning);
-                    button22.Visible = true;
-                    button23.Visible = true;
-                    button24.Visible = true;
+                    FormPars.PushMessage.ShowBalloonTip(2000, "Ошибка входных данных. Ссылка на чат неверного формата", "Ошибка: входной параметр", ToolTipIcon.Warning);
+                    bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Ошибка входных данных. Ссылка на чат неверного формата" + Environment.NewLine);
+                    bunifuMaterialTextbox4.Text = "";
                 }
+                button18.Text = "Начать";
+                button18.Enabled = true;
             }
             else {
-                MessageBox.Show("Ошибка входных данных. Ссылка на чат неверного формата");
-                bunifuMaterialTextbox4.Text = "";
-            }
-        }
-
-        private void Button19_Click(object sender, EventArgs e)
-        {
-            int i;
-            if (bunifuCustomTextbox5.Text == "")
-            {
-                i = 1;
-            }
-            else
-            {
-                i = Convert.ToInt32(bunifuCustomTextbox5.Text);
-            }
-
-
-            if (i > 0)
-            {
-                bunifuCustomTextbox5.Text = Convert.ToString(i - 1);
-            }
-        }
-
-        private void Button18_Click(object sender, EventArgs e)
-        {
-            int i;
-            if (bunifuCustomTextbox5.Text == "")
-            {
-                i = 0;
-            }
-            else
-            {
-                i = Convert.ToInt32(bunifuCustomTextbox5.Text);
-            }
-
-
-            if (i >= 0 & i < 60)
-            {
-                bunifuCustomTextbox5.Text = Convert.ToString(i + 1);
+                FormPars.PushMessage.ShowBalloonTip(2000, "Ошибка входных данных. Некоректный временной интервал.", "Ошибка: входной параметр", ToolTipIcon.Warning);
+                bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Ошибка входных данных. Некоректный временной интервал." + Environment.NewLine);
             }
         }
         private void Button23_Click(object sender, EventArgs e)
@@ -335,6 +312,109 @@ namespace SocialApp___Telegram_Broker
             panel4.Top = button2.Top;
             tabControl1.SelectedIndex = 3;
             label4.Text = "Парсер";
+        }
+
+        private void BunifuCustomTextbox6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8) // цифры и клавиша BackSpace
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void Button20_Click(object sender, EventArgs e)
+        {
+            int i;
+            if (bunifuCustomTextbox6.Text == "")
+            {
+                i = 1;
+            }
+            else
+            {
+                i = Convert.ToInt32(bunifuCustomTextbox6.Text);
+            }
+            if (i > 0)
+            {
+                bunifuCustomTextbox6.Text = Convert.ToString(i - 1);
+            }
+        }
+
+        private void Button21_Click(object sender, EventArgs e)
+        {
+            int i;
+            if (bunifuCustomTextbox6.Text == "")
+            {
+                i = 0;
+            }
+            else
+            {
+                i = Convert.ToInt32(bunifuCustomTextbox6.Text);
+            }
+            if (i >= 0 && i < 60)
+            {
+                bunifuCustomTextbox6.Text = Convert.ToString(i + 1);
+            }
+        }
+
+        private void Button26_Click(object sender, EventArgs e)
+        {
+            int i;
+            if (bunifuCustomTextbox9.Text == "")
+            {
+                i = 0;
+            }
+            else
+            {
+                i = Convert.ToInt32(bunifuCustomTextbox9.Text);
+            }
+            if (i >= 0 && i <60)
+            {
+                bunifuCustomTextbox9.Text = Convert.ToString(i + 1);
+            }
+        }
+
+        private void Button27_Click(object sender, EventArgs e)
+        {
+            int i;
+            if (bunifuCustomTextbox9.Text == "")
+            {
+                i = 1;
+            }
+            else
+            {
+                i = Convert.ToInt32(bunifuCustomTextbox9.Text);
+            }
+            if (i > 0)
+            {
+                bunifuCustomTextbox9.Text = Convert.ToString(i - 1);
+            }
+        }
+
+        private void BunifuDropdown6_onItemSelected(object sender, EventArgs e)
+        {
+            if (bunifuDropdown6.selectedValue == "Онлайн")
+            {
+                
+                bunifuCustomTextbox6.Text = "00";
+                bunifuCustomTextbox9.Text = "00";
+                button20.Enabled = false;
+                button21.Enabled = false;
+                button26.Enabled = false;
+                button27.Enabled = false;
+                bunifuCustomTextbox6.Enabled = false;
+                bunifuCustomTextbox9.Enabled = false;
+            }
+            else {
+                button20.Enabled = true;
+                button21.Enabled = true;
+                button26.Enabled = true;
+                button27.Enabled = true;
+                bunifuCustomTextbox6.Text = "0";
+                bunifuCustomTextbox9.Text = "60";
+                bunifuCustomTextbox6.Enabled = true;
+                bunifuCustomTextbox9.Enabled = true;
+            }
         }
     }
 }
