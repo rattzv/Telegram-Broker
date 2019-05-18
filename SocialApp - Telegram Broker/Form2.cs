@@ -255,7 +255,7 @@ namespace SocialApp___Telegram_Broker
                         button22.Invoke(new Action(() => button22.Visible = false));
                         button23.Invoke(new Action(() => button23.Visible = false));
                         button24.Invoke(new Action(() => button24.Visible = false));
-                        
+
                         int minTime = Convert.ToInt32(bunifuCustomTextbox6.Text);
                         int maxTime = Convert.ToInt32(bunifuCustomTextbox9.Text);
                         bool usernameCheck = bunifuCheckbox1.Checked;
@@ -274,12 +274,14 @@ namespace SocialApp___Telegram_Broker
                             switch (result)
                             {
                                 case "error":
-                                    MessageBox.Show("Ошибка, обработки запроса, попробуйте еще раз.");
+                                    FormPars.PushMessage.ShowBalloonTip(1000, "Ошибка обработки запроса, указанный чат не сущестует", "Ошибка: обработка запроса", ToolTipIcon.Warning);
                                     bunifuMaterialTextbox4.Invoke(new Action(() => bunifuMaterialTextbox4.Text = ""));
+                                    bunifuCustomTextbox5.Invoke(new Action(() => bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Ошибка обработки запроса, возможно указанный чат не сущестует." + Environment.NewLine)));
                                     break;
                                 case "limit":
                                     PushMessage.ShowBalloonTip(1000, "Максимальное число участников чата для парсинга - 10 000", "Ошибка: лимит парсинга", ToolTipIcon.Warning);
-                                    bunifuCustomTextbox5.Invoke(new Action(() => {
+                                    bunifuCustomTextbox5.Invoke(new Action(() =>
+                                    {
                                         bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Ошибка: лимит парсинга!" + "\n" + "Максимальное число участников чата для парсинга - 10 000." + Environment.NewLine);
                                         bunifuMaterialTextbox4.Text = "";
                                     }));
@@ -289,7 +291,8 @@ namespace SocialApp___Telegram_Broker
                                 default:
                                     if (token.IsCancellationRequested)
                                     {
-                                        button18.Invoke(new Action(() => {
+                                        button18.Invoke(new Action(() =>
+                                        {
                                             bunifuMaterialTextbox4.Text = "";
                                             button18.Text = "Начать";
                                             label54.Text = "готов к работе";
@@ -299,7 +302,8 @@ namespace SocialApp___Telegram_Broker
                                         return;
                                     }
                                     string JsonDecode = await Task.Factory.StartNew<string>(() => parsing.convertJsonToDataGrid(token, result, FormPars, usernameCheck, wasRecently, wasAWeekAgo, wasAMonthAgo, minTime, maxTime, status_flag, parsingOnly), TaskCreationOptions.LongRunning);
-                                    button22.Invoke(new Action(() => {
+                                    button22.Invoke(new Action(() =>
+                                    {
                                         button22.Visible = true;
                                         button23.Visible = true;
                                         button24.Visible = true;
@@ -309,25 +313,26 @@ namespace SocialApp___Telegram_Broker
                         }
                         else
                         {
-                            FormPars.PushMessage.ShowBalloonTip(2000, "Ошибка входных данных. Ссылка на чат неверного формата", "Ошибка: входной параметр", ToolTipIcon.Warning);
+                            FormPars.PushMessage.ShowBalloonTip(1000, "Ошибка входных данных. Ссылка на чат неверного формата", "Ошибка: входной параметр", ToolTipIcon.Warning);
                             bunifuMaterialTextbox4.Invoke(new Action(() => bunifuMaterialTextbox4.Text = ""));
-                            bunifuCustomTextbox5.Invoke(new Action(() => bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Ошибка входных данных. Ссылка на чат неверного формата" + Environment.NewLine)));
+                            bunifuCustomTextbox5.Invoke(new Action(() => bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Ошибка входных данных. Ссылка на чат неверного формата." + Environment.NewLine)));
                         }
-                        button18.Invoke(new Action(() => {
+                        button18.Invoke(new Action(() =>
+                        {
                             bunifuMaterialTextbox4.Text = "";
                             button18.Text = "Начать";
                             button18.Enabled = true;
                         }));
-                        
-                        
+
+
                     }
                     else
                     {
-                        FormPars.PushMessage.ShowBalloonTip(2000, "Ошибка входных данных. Некоректный временной интервал.", "Ошибка: входной параметр", ToolTipIcon.Warning);
+                        FormPars.PushMessage.ShowBalloonTip(1000, "Ошибка входных данных. Некоректный временной интервал", "Ошибка: входной параметр", ToolTipIcon.Warning);
                         bunifuCustomTextbox5.Invoke(new Action(() => bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Ошибка входных данных. Некоректный временной интервал." + Environment.NewLine)));
                     }
                 }, token);
-            
+
         }
         private void Button23_Click(object sender, EventArgs e)
         {
@@ -404,7 +409,7 @@ namespace SocialApp___Telegram_Broker
             {
                 i = Convert.ToInt32(bunifuCustomTextbox9.Text);
             }
-            if (i >= 0 && i <60)
+            if (i >= 0 && i < 60)
             {
                 bunifuCustomTextbox9.Text = Convert.ToString(i + 1);
             }
@@ -431,7 +436,7 @@ namespace SocialApp___Telegram_Broker
         {
             if (bunifuDropdown6.selectedValue == "Онлайн")
             {
-                
+
                 bunifuCustomTextbox6.Text = "00";
                 bunifuCustomTextbox9.Text = "60";
                 button20.Enabled = false;
@@ -441,7 +446,8 @@ namespace SocialApp___Telegram_Broker
                 bunifuCustomTextbox6.Enabled = false;
                 bunifuCustomTextbox9.Enabled = false;
             }
-            else {
+            else
+            {
                 button20.Enabled = true;
                 button21.Enabled = true;
                 button26.Enabled = true;
@@ -454,7 +460,8 @@ namespace SocialApp___Telegram_Broker
         }
         private void BunifuDropdown1_onItemSelected(object sender, EventArgs e)
         {
-            if (bunifuDropdown1.selectedValue == "Латиница + иероглифические") {
+            if (bunifuDropdown1.selectedValue == "Латиница + иероглифические")
+            {
                 bunifuDropdown9.Clear();
                 string[] items = { "Армения", "Австралия", "Бельгия", "Канада", "Китай", "Эстония", "Финляндия", "Франция", "Германия", "Индия", "Италия", "Япония", "США" };
                 foreach (var item in items)
@@ -483,7 +490,8 @@ namespace SocialApp___Telegram_Broker
                 button25.Enabled = false;
                 button25.Visible = false;
             }
-            else {
+            else
+            {
                 button25.Enabled = true;
                 button25.Visible = true;
             }
@@ -513,6 +521,7 @@ namespace SocialApp___Telegram_Broker
         private void Button11_Click(object sender, EventArgs e)
         {
 
-        
+
+        }
     }
 }
