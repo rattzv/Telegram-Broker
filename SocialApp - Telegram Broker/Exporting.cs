@@ -17,7 +17,7 @@ namespace SocialApp___Telegram_Broker
 {
     class Exporting
     {
-        public static void exportCSV(Form2 FormPars, string fileName)
+        public static void exportCSV(Worksheet FormPars, string fileName)
         {
             Directory.CreateDirectory(Application.StartupPath + @"\Parser");
 

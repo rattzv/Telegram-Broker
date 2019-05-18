@@ -15,10 +15,10 @@ using System.Diagnostics;
 
 namespace SocialApp___Telegram_Broker
 {
-    public partial class Form2 : Form
+    public partial class Worksheet : Form
     {
-        public static Form2 FormPars = null;
-        public Form2()
+        public static Worksheet FormPars = null;
+        public Worksheet()
         {
             FormPars = this;
             InitializeComponent();

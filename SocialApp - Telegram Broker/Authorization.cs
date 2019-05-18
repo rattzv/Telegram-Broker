@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace SocialApp___Telegram_Broker
 {
-    public partial class Form1 : Form
+    public partial class Authorization : Form
     {
-        public Form1()
+        public Authorization()
         {
             InitializeComponent();
         }
@@ -105,7 +105,7 @@ namespace SocialApp___Telegram_Broker
                         default:
                             this.label6.Text = "";
                             this.Hide();
-                            using (Form2 fr = new Form2()) {
+                            using (Worksheet fr = new Worksheet()) {
                                 fr.user_dataJson = result;
                                 fr.ShowDialog();
                             }

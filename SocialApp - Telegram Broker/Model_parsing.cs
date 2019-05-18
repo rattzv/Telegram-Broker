@@ -27,7 +27,7 @@ namespace SocialApp___Telegram_Broker
             }
             return parsechat_status;
         }
-        public static string parsAPI(CancellationToken token, string chatname, Form2 FormPars)
+        public static string parsAPI(CancellationToken token, string chatname, Worksheet FormPars)
         {
             FormPars.label54.Invoke(new Action(() => FormPars.label54.Text = "выполняется..."));
             FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Начало работы" + Environment.NewLine)));
@@ -116,7 +116,7 @@ namespace SocialApp___Telegram_Broker
                 }
             }
         }
-        public static string convertJsonToDataGrid(CancellationToken token, string result, Form2 FormPars, bool usernameCheck, bool wasRecently, bool wasAWeekAgo, bool wasAMonthAgo, int minTime, int maxTime, string status_flag, string parsingOnly)
+        public static string convertJsonToDataGrid(CancellationToken token, string result, Worksheet FormPars, bool usernameCheck, bool wasRecently, bool wasAWeekAgo, bool wasAMonthAgo, int minTime, int maxTime, string status_flag, string parsingOnly)
         {
             int minTimeIn = minTime;
             int userOnline = 0;
