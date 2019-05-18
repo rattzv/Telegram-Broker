@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using System.IO;
 using CsvHelper;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace SocialApp___Telegram_Broker
 {
@@ -26,8 +27,16 @@ namespace SocialApp___Telegram_Broker
 
         }
         public string user_dataJson;
+        public CancellationTokenSource tokenCancel;
         private void Form2_Load(object sender, EventArgs e)
         {
+            bunifuDropdown9.Clear();
+            string[] items = { "Россия", "Украина" };
+            foreach (var item in items)
+            {
+                bunifuDropdown9.AddItem(item);
+            }
+            bunifuDropdown9.selectedIndex = 0;
             x4526.Account account = JsonConvert.DeserializeObject<x4526.Account>(user_dataJson);
             label10.Text = account.email;
             if (account.subscription_status == "paid")
@@ -60,7 +69,6 @@ namespace SocialApp___Telegram_Broker
             label28.Text = Convert.ToString(NrOfDays);
             label30.Text = Convert.ToString(NrOfDays);
         }
-
         private void Button1_Click(object sender, EventArgs e)
         {
             panel4.Height = button1.Height;
@@ -233,65 +241,93 @@ namespace SocialApp___Telegram_Broker
                 e.Handled = true;
             }
         }
-        private void Button15_Click(object sender, EventArgs e)
-        {
-            bunifuCustomTextbox3.AppendText("[" + DateTime.Now + "] - " + "Программа запущена" + Environment.NewLine);
-        }
         private async void BunifuImageButton3_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(bunifuCustomTextbox6.Text) < Convert.ToInt32(bunifuCustomTextbox9.Text))
-            {
-                button18.Text = "Ожидайте...";
-                button18.Enabled = false;
-                button22.Visible = false;
-                button23.Visible = false;
-                button24.Visible = false;
-                int minTime = Convert.ToInt32(bunifuCustomTextbox6.Text);
-                int maxTime = Convert.ToInt32(bunifuCustomTextbox9.Text);
-                bool usernameCheck = bunifuCheckbox1.Checked;
-                bool wasRecently = bunifuCheckbox2.Checked;
-                bool wasAWeekAgo = bunifuCheckbox3.Checked;
-                bool wasAMonthAgo = bunifuCheckbox4.Checked;
-                string status_flag = bunifuDropdown6.selectedValue;
-                string chatname = bunifuMaterialTextbox4.Text;
-                bool flag = parsing.parsechat(chatname);
-                string parsingOnly = bunifuDropdown7.selectedValue;
-                if (flag == true)
+            this.tokenCancel = new CancellationTokenSource();
+            CancellationToken token = tokenCancel.Token;
+            await Task.Run(
+                async () =>
                 {
-                    bunifuCustomDataGrid1.Rows.Clear();
-                    string result = await Task.Factory.StartNew<string>(() => parsing.parsAPI(chatname, FormPars), TaskCreationOptions.LongRunning);
-                    if (result == "error")
+                    if (Convert.ToInt32(bunifuCustomTextbox6.Text) < Convert.ToInt32(bunifuCustomTextbox9.Text))
                     {
-                        MessageBox.Show("Ошибка, обработки запроса, попробуйте еще раз.");
-                        bunifuMaterialTextbox4.Text = "";
-                    }
-                    else if (result == "limit")
-                    {
-                        FormPars.PushMessage.ShowBalloonTip(1000, "Максимальное число участников чата для парсинга - 10 000", "Ошибка: лимит парсинга", ToolTipIcon.Warning);
-                        bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Ошибка: лимит парсинга!" + "\n" + "Максимальное число участников чата для парсинга - 10 000." + Environment.NewLine);
-                        bunifuMaterialTextbox4.Text = "";
+                        button18.Invoke(new Action(() => button18.Text = "Ожидайте..."));
+                        button18.Invoke(new Action(() => button18.Enabled = false));
+                        button22.Invoke(new Action(() => button22.Visible = false));
+                        button23.Invoke(new Action(() => button23.Visible = false));
+                        button24.Invoke(new Action(() => button24.Visible = false));
+                        
+                        int minTime = Convert.ToInt32(bunifuCustomTextbox6.Text);
+                        int maxTime = Convert.ToInt32(bunifuCustomTextbox9.Text);
+                        bool usernameCheck = bunifuCheckbox1.Checked;
+                        bool wasRecently = bunifuCheckbox2.Checked;
+                        bool wasAWeekAgo = bunifuCheckbox3.Checked;
+                        bool wasAMonthAgo = bunifuCheckbox4.Checked;
+                        string status_flag = null;
+                        bunifuDropdown6.Invoke(new Action(() => status_flag = bunifuDropdown6.selectedValue));
+                        string chatname = bunifuMaterialTextbox4.Text;
+                        bool flag = parsing.parsechat(chatname);
+                        string parsingOnly = null;
+                        bunifuDropdown7.Invoke(new Action(() => parsingOnly = bunifuDropdown7.selectedValue));
+                        if (flag == true)
+                        {
+                            string result = await Task.Factory.StartNew<string>(() => parsing.parsAPI(token, chatname, FormPars), TaskCreationOptions.LongRunning);
+                            switch (result)
+                            {
+                                case "error":
+                                    MessageBox.Show("Ошибка, обработки запроса, попробуйте еще раз.");
+                                    bunifuMaterialTextbox4.Invoke(new Action(() => bunifuMaterialTextbox4.Text = ""));
+                                    break;
+                                case "limit":
+                                    PushMessage.ShowBalloonTip(1000, "Максимальное число участников чата для парсинга - 10 000", "Ошибка: лимит парсинга", ToolTipIcon.Warning);
+                                    bunifuCustomTextbox5.Invoke(new Action(() => {
+                                        bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Ошибка: лимит парсинга!" + "\n" + "Максимальное число участников чата для парсинга - 10 000." + Environment.NewLine);
+                                        bunifuMaterialTextbox4.Text = "";
+                                    }));
+                                    break;
+                                case "cancel":
+                                    break;
+                                default:
+                                    if (token.IsCancellationRequested)
+                                    {
+                                        button18.Invoke(new Action(() => {
+                                            bunifuMaterialTextbox4.Text = "";
+                                            button18.Text = "Начать";
+                                            label54.Text = "готов к работе";
+                                            button18.Enabled = true;
+                                            bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Парсинг прерван пользователем." + Environment.NewLine);
+                                        }));
+                                        return;
+                                    }
+                                    string JsonDecode = await Task.Factory.StartNew<string>(() => parsing.convertJsonToDataGrid(token, result, FormPars, usernameCheck, wasRecently, wasAWeekAgo, wasAMonthAgo, minTime, maxTime, status_flag, parsingOnly), TaskCreationOptions.LongRunning);
+                                    button22.Invoke(new Action(() => {
+                                        button22.Visible = true;
+                                        button23.Visible = true;
+                                        button24.Visible = true;
+                                    }));
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            FormPars.PushMessage.ShowBalloonTip(2000, "Ошибка входных данных. Ссылка на чат неверного формата", "Ошибка: входной параметр", ToolTipIcon.Warning);
+                            bunifuMaterialTextbox4.Invoke(new Action(() => bunifuMaterialTextbox4.Text = ""));
+                            bunifuCustomTextbox5.Invoke(new Action(() => bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Ошибка входных данных. Ссылка на чат неверного формата" + Environment.NewLine)));
+                        }
+                        button18.Invoke(new Action(() => {
+                            bunifuMaterialTextbox4.Text = "";
+                            button18.Text = "Начать";
+                            button18.Enabled = true;
+                        }));
+                        
+                        
                     }
                     else
                     {
-                        string JsonDecode = await Task.Factory.StartNew<string>(() => parsing.convertJsonToDataGrid(result, FormPars, usernameCheck, wasRecently, wasAWeekAgo, wasAMonthAgo, minTime, maxTime, status_flag, parsingOnly), TaskCreationOptions.LongRunning);
-                        button22.Visible = true;
-                        button23.Visible = true;
-                        button24.Visible = true;
+                        FormPars.PushMessage.ShowBalloonTip(2000, "Ошибка входных данных. Некоректный временной интервал.", "Ошибка: входной параметр", ToolTipIcon.Warning);
+                        bunifuCustomTextbox5.Invoke(new Action(() => bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Ошибка входных данных. Некоректный временной интервал." + Environment.NewLine)));
                     }
-                }
-                else
-                {
-                    FormPars.PushMessage.ShowBalloonTip(2000, "Ошибка входных данных. Ссылка на чат неверного формата", "Ошибка: входной параметр", ToolTipIcon.Warning);
-                    bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Ошибка входных данных. Ссылка на чат неверного формата" + Environment.NewLine);
-                    bunifuMaterialTextbox4.Text = "";
-                }
-                button18.Text = "Начать";
-                button18.Enabled = true;
-            }
-            else {
-                FormPars.PushMessage.ShowBalloonTip(2000, "Ошибка входных данных. Некоректный временной интервал.", "Ошибка: входной параметр", ToolTipIcon.Warning);
-                bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Ошибка входных данных. Некоректный временной интервал." + Environment.NewLine);
-            }
+                }, token);
+            
         }
         private void Button23_Click(object sender, EventArgs e)
         {
@@ -397,7 +433,7 @@ namespace SocialApp___Telegram_Broker
             {
                 
                 bunifuCustomTextbox6.Text = "00";
-                bunifuCustomTextbox9.Text = "00";
+                bunifuCustomTextbox9.Text = "60";
                 button20.Enabled = false;
                 button21.Enabled = false;
                 button26.Enabled = false;
@@ -416,5 +452,67 @@ namespace SocialApp___Telegram_Broker
                 bunifuCustomTextbox9.Enabled = true;
             }
         }
+        private void BunifuDropdown1_onItemSelected(object sender, EventArgs e)
+        {
+            if (bunifuDropdown1.selectedValue == "Латиница + иероглифические") {
+                bunifuDropdown9.Clear();
+                string[] items = { "Армения", "Австралия", "Бельгия", "Канада", "Китай", "Эстония", "Финляндия", "Франция", "Германия", "Индия", "Италия", "Япония", "США" };
+                foreach (var item in items)
+                {
+                    bunifuDropdown9.AddItem(item);
+                }
+                bunifuDropdown9.selectedIndex = 12;
+            }
+
+            if (bunifuDropdown1.selectedValue == "Кириллица")
+            {
+                bunifuDropdown9.Clear();
+                string[] items = { "Россия", "Украина" };
+                foreach (var item in items)
+                {
+                    bunifuDropdown9.AddItem(item);
+                }
+                bunifuDropdown9.selectedIndex = 0;
+            }
+        }
+
+        private void BunifuCheckbox7_OnChange(object sender, EventArgs e)
+        {
+            if (!bunifuCheckbox7.Checked)
+            {
+                button25.Enabled = false;
+                button25.Visible = false;
+            }
+            else {
+                button25.Enabled = true;
+                button25.Visible = true;
+            }
+        }
+
+        private void BunifuCheckbox8_OnChange(object sender, EventArgs e)
+        {
+            if (!bunifuCheckbox8.Checked)
+            {
+                bunifuCustomTextbox2.Enabled = false;
+                bunifuCustomTextbox2.Visible = false;
+            }
+            else
+            {
+                bunifuCustomTextbox2.Enabled = true;
+                bunifuCustomTextbox2.Visible = true;
+            }
+        }
+
+        private void Button28_Click(object sender, EventArgs e)
+        {
+            this.tokenCancel.Cancel();
+            label54.Text = "готов к работе.";
+            FormPars.bunifuCustomTextbox3.Invoke(new Action(() => FormPars.bunifuCustomTextbox3.AppendText("[" + DateTime.Now + "] " + "Отмена операции. Остановка..." + Environment.NewLine)));
+        }
+
+        private void Button11_Click(object sender, EventArgs e)
+        {
+
+        
     }
 }

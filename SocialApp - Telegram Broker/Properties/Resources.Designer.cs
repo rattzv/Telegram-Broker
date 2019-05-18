@@ -63,6 +63,16 @@ namespace SocialApp___Telegram_Broker.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_accounting__40px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_accounting__40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_domain_40px_1 {
             get {
                 object obj = ResourceManager.GetObject("icons8_domain_40px_1", resourceCulture);
@@ -113,9 +123,29 @@ namespace SocialApp___Telegram_Broker.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_opened_folder_30px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_opened_folder_30px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_opened_folder_40px {
             get {
                 object obj = ResourceManager.GetObject("icons8_opened_folder_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_save_30px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_save_30px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -176,6 +206,16 @@ namespace SocialApp___Telegram_Broker.Properties {
         internal static System.Drawing.Bitmap icons8_user_male_circle_40px_3 {
             get {
                 object obj = ResourceManager.GetObject("icons8_user_male_circle_40px_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_view_file_30px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_view_file_30px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

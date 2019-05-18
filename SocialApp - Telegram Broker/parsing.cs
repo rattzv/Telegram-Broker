@@ -9,6 +9,7 @@ using System.IO;
 using System.Collections.Specialized;
 using Newtonsoft;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace SocialApp___Telegram_Broker
 {
@@ -26,7 +27,7 @@ namespace SocialApp___Telegram_Broker
             }
             return parsechat_status;
         }
-        public static string parsAPI(string chatname, Form2 FormPars)
+        public static string parsAPI(CancellationToken token, string chatname, Form2 FormPars)
         {
             FormPars.label54.Invoke(new Action(() => FormPars.label54.Text = "выполняется..."));
             FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Начало работы" + Environment.NewLine)));
@@ -82,6 +83,7 @@ namespace SocialApp___Telegram_Broker
                     {
                         try
                         {
+
                             FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Время ожидания ответа сервера истекло. Поиск результатов на сервере..." + Environment.NewLine)));
                             FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Загрузка файла..." + Environment.NewLine)));
                             Directory.CreateDirectory(Application.StartupPath + @"\fullfilearray_system");
@@ -94,6 +96,17 @@ namespace SocialApp___Telegram_Broker
                         }
                         catch
                         {
+                            if (token.IsCancellationRequested)
+                            {
+                                FormPars.button18.Invoke(new Action(() => {
+                                FormPars.bunifuMaterialTextbox4.Text = "";
+                                FormPars.button18.Text = "Начать";
+                                FormPars.label54.Text = "готов к работе";
+                                FormPars.button18.Enabled = true;
+                                FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Парсинг прерван пользователем." + Environment.NewLine);
+                                }));
+                                return "cancel";
+                            }
                             FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Таймаут - 5 секунд." + Environment.NewLine)));
                             System.Threading.Thread.Sleep(5 * 1000);
                         }
@@ -103,7 +116,7 @@ namespace SocialApp___Telegram_Broker
                 }
             }
         }
-        public static string convertJsonToDataGrid(string result, Form2 FormPars, bool usernameCheck, bool wasRecently, bool wasAWeekAgo, bool wasAMonthAgo, int minTime, int maxTime, string status_flag, string parsingOnly)
+        public static string convertJsonToDataGrid(CancellationToken token, string result, Form2 FormPars, bool usernameCheck, bool wasRecently, bool wasAWeekAgo, bool wasAMonthAgo, int minTime, int maxTime, string status_flag, string parsingOnly)
         {
             int minTimeIn = minTime;
             int userOnline = 0;
@@ -116,6 +129,15 @@ namespace SocialApp___Telegram_Broker
             FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Начало разбора и фильтрации данных..." + Environment.NewLine)));
             foreach (QuickType.Participant r in list.Participants)
             {
+                if (token.IsCancellationRequested)
+                {
+                    FormPars.button18.Invoke(new Action(() => {
+                    FormPars.bunifuMaterialTextbox4.Text = "";
+                    FormPars.button18.Text = "Начать";
+                    FormPars.button18.Enabled = true;
+                    }));
+                    break;
+                }
                 if (r.User.Status != null)
                 {
                     if (r.User.Type == "user")
@@ -307,17 +329,32 @@ namespace SocialApp___Telegram_Broker
                     }
                 }
             }
-            FormPars.label73.Invoke(new Action(() => FormPars.label73.Text = "Получено строк - " + FormPars.bunifuCustomDataGrid1.RowCount));
-            FormPars.label54.Invoke(new Action(() => FormPars.label54.Text = " обработано 100%"));
-            FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Парсинг завершен." + Environment.NewLine)));
-            FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Получено участников (с учетом фильтрации): " + Convert.ToString(FormPars.bunifuCustomDataGrid1.RowCount) + Environment.NewLine)));
-            FormPars.label66.Invoke(new Action(() => FormPars.label66.Visible = true));
-            FormPars.label67.Invoke(new Action(() => FormPars.label67.Visible = true));
-            FormPars.bunifuDropdown8.Invoke(new Action(() => FormPars.bunifuDropdown8.Visible = true));
-            FormPars.button22.Invoke(new Action(() => FormPars.button22.Visible = true));
-            FormPars.button23.Invoke(new Action(() => FormPars.button23.Visible = true));
-            FormPars.PushMessage.ShowBalloonTip(1000, "Парсинг участников группы - " + list.Title + " завершен", "Парсинг завершен", ToolTipIcon.Info);
-            return "Ok";
+            if (token.IsCancellationRequested)
+            {
+                FormPars.button18.Invoke(new Action(() =>
+                {
+                    FormPars.bunifuMaterialTextbox4.Text = "";
+                    FormPars.button18.Text = "Начать";
+                    FormPars.label54.Text = "готов к работе";
+                    FormPars.button18.Enabled = true;
+                    FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Парсинг прерван пользователем." + Environment.NewLine);
+                }));
+                return "";
+            }
+            else {
+                FormPars.label73.Invoke(new Action(() => FormPars.label73.Text = "Получено строк - " + FormPars.bunifuCustomDataGrid1.RowCount));
+                FormPars.label54.Invoke(new Action(() => FormPars.label54.Text = " обработано 100%"));
+                FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Парсинг завершен." + Environment.NewLine)));
+                FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Получено участников (с учетом фильтрации): " + Convert.ToString(FormPars.bunifuCustomDataGrid1.RowCount) + Environment.NewLine)));
+                FormPars.label66.Invoke(new Action(() => FormPars.label66.Visible = true));
+                FormPars.label67.Invoke(new Action(() => FormPars.label67.Visible = true));
+                FormPars.bunifuDropdown8.Invoke(new Action(() => FormPars.bunifuDropdown8.Visible = true));
+                FormPars.button22.Invoke(new Action(() => FormPars.button22.Visible = true));
+                FormPars.button23.Invoke(new Action(() => FormPars.button23.Visible = true));
+                FormPars.PushMessage.ShowBalloonTip(1000, "Парсинг участников группы - " + list.Title + " завершен", "Парсинг завершен", ToolTipIcon.Info);
+                return "Ok";
+            }
+            
         }
     }
 }
