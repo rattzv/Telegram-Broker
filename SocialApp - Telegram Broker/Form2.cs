@@ -37,7 +37,7 @@ namespace SocialApp___Telegram_Broker
                 bunifuDropdown9.AddItem(item);
             }
             bunifuDropdown9.selectedIndex = 0;
-            x4526.Account account = JsonConvert.DeserializeObject<x4526.Account>(user_dataJson);
+            QuickType.Account account = JsonConvert.DeserializeObject<QuickType.Account>(user_dataJson);
             label10.Text = account.email;
             if (account.subscription_status == "paid")
             {
@@ -82,7 +82,7 @@ namespace SocialApp___Telegram_Broker
             panel4.Height = button2.Height;
             panel4.Top = button2.Top;
             tabControl1.SelectedIndex = 3;
-            label4.Text = "Парсер";
+            label4.Text = "Парсинг";
         }
 
         private void Button3_Click(object sender, EventArgs e)
@@ -265,12 +265,12 @@ namespace SocialApp___Telegram_Broker
                         string status_flag = null;
                         bunifuDropdown6.Invoke(new Action(() => status_flag = bunifuDropdown6.selectedValue));
                         string chatname = bunifuMaterialTextbox4.Text;
-                        bool flag = parsing.parsechat(chatname);
+                        bool flag = Model_parsing.parsechat(chatname);
                         string parsingOnly = null;
                         bunifuDropdown7.Invoke(new Action(() => parsingOnly = bunifuDropdown7.selectedValue));
                         if (flag == true)
                         {
-                            string result = await Task.Factory.StartNew<string>(() => parsing.parsAPI(token, chatname, FormPars), TaskCreationOptions.LongRunning);
+                            string result = await Task.Factory.StartNew<string>(() => Model_parsing.parsAPI(token, chatname, FormPars), TaskCreationOptions.LongRunning);
                             switch (result)
                             {
                                 case "error":
@@ -301,7 +301,7 @@ namespace SocialApp___Telegram_Broker
                                         }));
                                         return;
                                     }
-                                    string JsonDecode = await Task.Factory.StartNew<string>(() => parsing.convertJsonToDataGrid(token, result, FormPars, usernameCheck, wasRecently, wasAWeekAgo, wasAMonthAgo, minTime, maxTime, status_flag, parsingOnly), TaskCreationOptions.LongRunning);
+                                    string JsonDecode = await Task.Factory.StartNew<string>(() => Model_parsing.convertJsonToDataGrid(token, result, FormPars, usernameCheck, wasRecently, wasAWeekAgo, wasAMonthAgo, minTime, maxTime, status_flag, parsingOnly), TaskCreationOptions.LongRunning);
                                     button22.Invoke(new Action(() =>
                                     {
                                         button22.Visible = true;
@@ -518,10 +518,9 @@ namespace SocialApp___Telegram_Broker
             FormPars.bunifuCustomTextbox3.Invoke(new Action(() => FormPars.bunifuCustomTextbox3.AppendText("[" + DateTime.Now + "] " + "Отмена операции. Остановка..." + Environment.NewLine)));
         }
 
-        private void Button11_Click(object sender, EventArgs e)
+        private void Button15_Click(object sender, EventArgs e)
         {
-
-
+            System.Diagnostics.Process.Start(@"Resources\Telegram.exe");
         }
     }
 }

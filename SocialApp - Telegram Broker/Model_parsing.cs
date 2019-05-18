@@ -13,7 +13,7 @@ using System.Threading;
 
 namespace SocialApp___Telegram_Broker
 {
-    class parsing
+    class Model_parsing
     {
         public static bool parsechat(string parsechat)
         {

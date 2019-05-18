@@ -24,7 +24,6 @@ namespace SocialApp___Telegram_Broker
             bool EmailValidate_status = isMatch.Success;
             return EmailValidate_status;
         }
-
         public static string ProcessAuth(string login, string password)
         {
             string url = "https://kzac.ru/bot/login.php";
@@ -44,7 +43,6 @@ namespace SocialApp___Telegram_Broker
                 return str_response;
             }
         }
-
         public static string checkEmailExist(string login, string password, string subscription_type, string hash_system, string motherBoardID, string processorID)
         {
             string url = "https://kzac.ru/bot/registered.php";
@@ -82,18 +80,6 @@ namespace SocialApp___Telegram_Broker
                 return str_response_email;
             }
         }
-
-        public class Account
-        {
-            public string email { get; set; }
-            public DateTime date_registration { get; set; }
-            public DateTime date_last_payment { get; set; }
-            public string subscription_status { get; set; }
-            public string subscription_type { get; set; }
-            public string renewal_counter { get; set; }
-        }
-
-
         public static String getMotherBoardID()
         {
             string MotherBoardID = "";
@@ -113,7 +99,6 @@ namespace SocialApp___Telegram_Broker
                 return "NotFoundMotherBoardID";
             }
         }
-
         public static string getProcessorID()
         {
             String ProcessorID = "";
@@ -132,7 +117,6 @@ namespace SocialApp___Telegram_Broker
                 return "NotFoundProcessorID";
             }
         }
-
         public static string GetHash(string input)
         {
             var md5 = MD5.Create();

@@ -169,6 +169,7 @@
             this.panel11 = new System.Windows.Forms.Panel();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.panel12 = new System.Windows.Forms.Panel();
+            this.label51 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.bunifuCheckbox6 = new Bunifu.Framework.UI.BunifuCheckbox();
             this.bunifuCheckbox8 = new Bunifu.Framework.UI.BunifuCheckbox();
@@ -178,6 +179,7 @@
             this.button16 = new System.Windows.Forms.Button();
             this.bunifuCustomTextbox4 = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.button17 = new System.Windows.Forms.Button();
+            this.bunifuSeparator5 = new Bunifu.Framework.UI.BunifuSeparator();
             this.bunifuSeparator6 = new Bunifu.Framework.UI.BunifuSeparator();
             this.bunifuSeparator10 = new Bunifu.Framework.UI.BunifuSeparator();
             this.button25 = new System.Windows.Forms.Button();
@@ -191,8 +193,6 @@
             this.bunifuDropdown3 = new Bunifu.Framework.UI.BunifuDropdown();
             this.bunifuDropdown5 = new Bunifu.Framework.UI.BunifuDropdown();
             this.bunifuDropdown1 = new Bunifu.Framework.UI.BunifuDropdown();
-            this.label47 = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -460,7 +460,7 @@
             this.button2.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.button2.Size = new System.Drawing.Size(217, 50);
             this.button2.TabIndex = 0;
-            this.button2.Text = "   Парсер";
+            this.button2.Text = "   Парсинг";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
@@ -739,7 +739,6 @@
             this.button11.TabIndex = 14;
             this.button11.Text = "Сменить пароль";
             this.button11.UseVisualStyleBackColor = false;
-            this.button11.Click += new System.EventHandler(this.Button11_Click);
             // 
             // label26
             // 
@@ -2173,12 +2172,14 @@
             // panel12
             // 
             this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(59)))));
+            this.panel12.Controls.Add(this.label51);
             this.panel12.Controls.Add(this.label49);
             this.panel12.Controls.Add(this.bunifuCheckbox6);
             this.panel12.Controls.Add(this.bunifuCheckbox8);
             this.panel12.Controls.Add(this.bunifuCheckbox7);
             this.panel12.Controls.Add(this.bunifuCheckbox5);
             this.panel12.Controls.Add(this.panel14);
+            this.panel12.Controls.Add(this.bunifuSeparator5);
             this.panel12.Controls.Add(this.bunifuSeparator6);
             this.panel12.Controls.Add(this.bunifuSeparator10);
             this.panel12.Controls.Add(this.button25);
@@ -2192,8 +2193,6 @@
             this.panel12.Controls.Add(this.bunifuDropdown3);
             this.panel12.Controls.Add(this.bunifuDropdown5);
             this.panel12.Controls.Add(this.bunifuDropdown1);
-            this.panel12.Controls.Add(this.label47);
-            this.panel12.Controls.Add(this.label46);
             this.panel12.Controls.Add(this.label6);
             this.panel12.Controls.Add(this.label48);
             this.panel12.Controls.Add(this.label8);
@@ -2212,13 +2211,26 @@
             this.panel12.Size = new System.Drawing.Size(981, 572);
             this.panel12.TabIndex = 8;
             // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.BackColor = System.Drawing.Color.Transparent;
+            this.label51.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label51.ForeColor = System.Drawing.Color.White;
+            this.label51.Location = new System.Drawing.Point(35, 74);
+            this.label51.Margin = new System.Windows.Forms.Padding(5, 0, 5, 5);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(139, 19);
+            this.label51.TabIndex = 41;
+            this.label51.Text = "Настройки ФИО";
+            // 
             // label49
             // 
             this.label49.AutoSize = true;
             this.label49.BackColor = System.Drawing.Color.Transparent;
             this.label49.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label49.ForeColor = System.Drawing.Color.White;
-            this.label49.Location = new System.Drawing.Point(34, 25);
+            this.label49.Location = new System.Drawing.Point(35, 25);
             this.label49.Margin = new System.Windows.Forms.Padding(5);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(185, 21);
@@ -2232,7 +2244,7 @@
             this.bunifuCheckbox6.Checked = false;
             this.bunifuCheckbox6.CheckedOnColor = System.Drawing.Color.SeaGreen;
             this.bunifuCheckbox6.ForeColor = System.Drawing.Color.White;
-            this.bunifuCheckbox6.Location = new System.Drawing.Point(256, 473);
+            this.bunifuCheckbox6.Location = new System.Drawing.Point(256, 493);
             this.bunifuCheckbox6.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuCheckbox6.Name = "bunifuCheckbox6";
             this.bunifuCheckbox6.Size = new System.Drawing.Size(20, 20);
@@ -2245,7 +2257,7 @@
             this.bunifuCheckbox8.Checked = true;
             this.bunifuCheckbox8.CheckedOnColor = System.Drawing.Color.SeaGreen;
             this.bunifuCheckbox8.ForeColor = System.Drawing.Color.White;
-            this.bunifuCheckbox8.Location = new System.Drawing.Point(256, 323);
+            this.bunifuCheckbox8.Location = new System.Drawing.Point(256, 355);
             this.bunifuCheckbox8.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuCheckbox8.Name = "bunifuCheckbox8";
             this.bunifuCheckbox8.Size = new System.Drawing.Size(20, 20);
@@ -2259,7 +2271,7 @@
             this.bunifuCheckbox7.Checked = true;
             this.bunifuCheckbox7.CheckedOnColor = System.Drawing.Color.SeaGreen;
             this.bunifuCheckbox7.ForeColor = System.Drawing.Color.White;
-            this.bunifuCheckbox7.Location = new System.Drawing.Point(256, 271);
+            this.bunifuCheckbox7.Location = new System.Drawing.Point(256, 303);
             this.bunifuCheckbox7.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuCheckbox7.Name = "bunifuCheckbox7";
             this.bunifuCheckbox7.Size = new System.Drawing.Size(20, 20);
@@ -2273,8 +2285,8 @@
             this.bunifuCheckbox5.Checked = true;
             this.bunifuCheckbox5.CheckedOnColor = System.Drawing.Color.SeaGreen;
             this.bunifuCheckbox5.ForeColor = System.Drawing.Color.White;
-            this.bunifuCheckbox5.Location = new System.Drawing.Point(256, 199);
-            this.bunifuCheckbox5.Margin = new System.Windows.Forms.Padding(5);
+            this.bunifuCheckbox5.Location = new System.Drawing.Point(256, 231);
+            this.bunifuCheckbox5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 5);
             this.bunifuCheckbox5.Name = "bunifuCheckbox5";
             this.bunifuCheckbox5.Size = new System.Drawing.Size(20, 20);
             this.bunifuCheckbox5.TabIndex = 38;
@@ -2342,12 +2354,24 @@
             this.button17.UseVisualStyleBackColor = false;
             this.button17.Click += new System.EventHandler(this.Button17_Click);
             // 
+            // bunifuSeparator5
+            // 
+            this.bunifuSeparator5.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuSeparator5.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
+            this.bunifuSeparator5.LineThickness = 1;
+            this.bunifuSeparator5.Location = new System.Drawing.Point(38, 51);
+            this.bunifuSeparator5.Name = "bunifuSeparator5";
+            this.bunifuSeparator5.Size = new System.Drawing.Size(470, 20);
+            this.bunifuSeparator5.TabIndex = 25;
+            this.bunifuSeparator5.Transparency = 255;
+            this.bunifuSeparator5.Vertical = false;
+            // 
             // bunifuSeparator6
             // 
             this.bunifuSeparator6.BackColor = System.Drawing.Color.Transparent;
             this.bunifuSeparator6.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
             this.bunifuSeparator6.LineThickness = 1;
-            this.bunifuSeparator6.Location = new System.Drawing.Point(38, 171);
+            this.bunifuSeparator6.Location = new System.Drawing.Point(38, 208);
             this.bunifuSeparator6.Name = "bunifuSeparator6";
             this.bunifuSeparator6.Size = new System.Drawing.Size(470, 20);
             this.bunifuSeparator6.TabIndex = 25;
@@ -2359,7 +2383,7 @@
             this.bunifuSeparator10.BackColor = System.Drawing.Color.Transparent;
             this.bunifuSeparator10.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
             this.bunifuSeparator10.LineThickness = 1;
-            this.bunifuSeparator10.Location = new System.Drawing.Point(40, 369);
+            this.bunifuSeparator10.Location = new System.Drawing.Point(40, 394);
             this.bunifuSeparator10.Name = "bunifuSeparator10";
             this.bunifuSeparator10.Size = new System.Drawing.Size(468, 20);
             this.bunifuSeparator10.TabIndex = 25;
@@ -2373,7 +2397,7 @@
             this.button25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button25.Font = new System.Drawing.Font("Century Gothic", 11F);
             this.button25.ForeColor = System.Drawing.Color.Transparent;
-            this.button25.Location = new System.Drawing.Point(286, 267);
+            this.button25.Location = new System.Drawing.Point(286, 299);
             this.button25.Margin = new System.Windows.Forms.Padding(5);
             this.button25.Name = "button25";
             this.button25.Size = new System.Drawing.Size(222, 28);
@@ -2395,6 +2419,7 @@
             this.button15.TabIndex = 26;
             this.button15.Text = "Начать";
             this.button15.UseVisualStyleBackColor = false;
+            this.button15.Click += new System.EventHandler(this.Button15_Click);
             // 
             // button14
             // 
@@ -2433,7 +2458,7 @@
             this.bunifuCustomTextbox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(187)))), ((int)(((byte)(94)))));
             this.bunifuCustomTextbox2.Enabled = false;
             this.bunifuCustomTextbox2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuCustomTextbox2.Location = new System.Drawing.Point(286, 305);
+            this.bunifuCustomTextbox2.Location = new System.Drawing.Point(286, 337);
             this.bunifuCustomTextbox2.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuCustomTextbox2.MaxLength = 220;
             this.bunifuCustomTextbox2.Multiline = true;
@@ -2451,7 +2476,7 @@
             this.bunifuDropdown4.ForeColor = System.Drawing.Color.White;
             this.bunifuDropdown4.Items = new string[] {
         "Россия"};
-            this.bunifuDropdown4.Location = new System.Drawing.Point(256, 435);
+            this.bunifuDropdown4.Location = new System.Drawing.Point(256, 455);
             this.bunifuDropdown4.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuDropdown4.Name = "bunifuDropdown4";
             this.bunifuDropdown4.NomalColor = System.Drawing.Color.SeaGreen;
@@ -2477,7 +2502,7 @@
         "Словакия",
         "Швеция",
         "США"};
-            this.bunifuDropdown9.Location = new System.Drawing.Point(256, 97);
+            this.bunifuDropdown9.Location = new System.Drawing.Point(256, 141);
             this.bunifuDropdown9.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuDropdown9.Name = "bunifuDropdown9";
             this.bunifuDropdown9.NomalColor = System.Drawing.Color.SeaGreen;
@@ -2496,7 +2521,7 @@
         "Мужской",
         "Женский",
         "Любой (random)"};
-            this.bunifuDropdown2.Location = new System.Drawing.Point(256, 135);
+            this.bunifuDropdown2.Location = new System.Drawing.Point(256, 179);
             this.bunifuDropdown2.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuDropdown2.Name = "bunifuDropdown2";
             this.bunifuDropdown2.NomalColor = System.Drawing.Color.SeaGreen;
@@ -2513,8 +2538,8 @@
             this.bunifuDropdown3.ForeColor = System.Drawing.Color.White;
             this.bunifuDropdown3.Items = new string[] {
         "sms.ru"};
-            this.bunifuDropdown3.Location = new System.Drawing.Point(256, 397);
-            this.bunifuDropdown3.Margin = new System.Windows.Forms.Padding(5);
+            this.bunifuDropdown3.Location = new System.Drawing.Point(256, 417);
+            this.bunifuDropdown3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 5);
             this.bunifuDropdown3.Name = "bunifuDropdown3";
             this.bunifuDropdown3.NomalColor = System.Drawing.Color.SeaGreen;
             this.bunifuDropdown3.onHoverColor = System.Drawing.Color.SeaGreen;
@@ -2532,7 +2557,7 @@
         "Стандартные",
         "Собственные",
         "Не устанавливать"};
-            this.bunifuDropdown5.Location = new System.Drawing.Point(256, 229);
+            this.bunifuDropdown5.Location = new System.Drawing.Point(256, 261);
             this.bunifuDropdown5.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuDropdown5.Name = "bunifuDropdown5";
             this.bunifuDropdown5.NomalColor = System.Drawing.Color.SeaGreen;
@@ -2551,7 +2576,7 @@
             this.bunifuDropdown1.Items = new string[] {
         "Кириллица",
         "Латиница + иероглифические"};
-            this.bunifuDropdown1.Location = new System.Drawing.Point(256, 59);
+            this.bunifuDropdown1.Location = new System.Drawing.Point(256, 103);
             this.bunifuDropdown1.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuDropdown1.Name = "bunifuDropdown1";
             this.bunifuDropdown1.NomalColor = System.Drawing.Color.SeaGreen;
@@ -2561,38 +2586,14 @@
             this.bunifuDropdown1.TabIndex = 1;
             this.bunifuDropdown1.onItemSelected += new System.EventHandler(this.BunifuDropdown1_onItemSelected);
             // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.BackColor = System.Drawing.Color.Transparent;
-            this.label47.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.label47.ForeColor = System.Drawing.Color.White;
-            this.label47.Location = new System.Drawing.Point(252, 546);
-            this.label47.Margin = new System.Windows.Forms.Padding(5);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(101, 21);
-            this.label47.TabIndex = 19;
-            this.label47.Text = "Неизвестно";
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.BackColor = System.Drawing.Color.Transparent;
-            this.label46.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.label46.ForeColor = System.Drawing.Color.White;
-            this.label46.Location = new System.Drawing.Point(36, 546);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(168, 21);
-            this.label46.TabIndex = 19;
-            this.label46.Text = "Доступных новеров:";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(34, 439);
+            this.label6.Location = new System.Drawing.Point(35, 459);
+            this.label6.Margin = new System.Windows.Forms.Padding(5);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(185, 21);
             this.label6.TabIndex = 19;
@@ -2604,7 +2605,8 @@
             this.label48.BackColor = System.Drawing.Color.Transparent;
             this.label48.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label48.ForeColor = System.Drawing.Color.White;
-            this.label48.Location = new System.Drawing.Point(34, 101);
+            this.label48.Location = new System.Drawing.Point(35, 145);
+            this.label48.Margin = new System.Windows.Forms.Padding(5);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(131, 21);
             this.label48.TabIndex = 19;
@@ -2616,7 +2618,8 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(34, 139);
+            this.label8.Location = new System.Drawing.Point(35, 183);
+            this.label8.Margin = new System.Windows.Forms.Padding(5);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(121, 21);
             this.label8.TabIndex = 19;
@@ -2628,7 +2631,8 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(34, 401);
+            this.label5.Location = new System.Drawing.Point(35, 421);
+            this.label5.Margin = new System.Windows.Forms.Padding(5);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(107, 21);
             this.label5.TabIndex = 20;
@@ -2640,7 +2644,8 @@
             this.label45.BackColor = System.Drawing.Color.Transparent;
             this.label45.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label45.ForeColor = System.Drawing.Color.White;
-            this.label45.Location = new System.Drawing.Point(34, 473);
+            this.label45.Location = new System.Drawing.Point(35, 493);
+            this.label45.Margin = new System.Windows.Forms.Padding(5);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(185, 21);
             this.label45.TabIndex = 20;
@@ -2652,7 +2657,7 @@
             this.label43.BackColor = System.Drawing.Color.Transparent;
             this.label43.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label43.ForeColor = System.Drawing.Color.White;
-            this.label43.Location = new System.Drawing.Point(34, 323);
+            this.label43.Location = new System.Drawing.Point(35, 355);
             this.label43.Margin = new System.Windows.Forms.Padding(5);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(158, 21);
@@ -2665,7 +2670,8 @@
             this.label74.BackColor = System.Drawing.Color.Transparent;
             this.label74.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label74.ForeColor = System.Drawing.Color.White;
-            this.label74.Location = new System.Drawing.Point(34, 271);
+            this.label74.Location = new System.Drawing.Point(35, 303);
+            this.label74.Margin = new System.Windows.Forms.Padding(5);
             this.label74.Name = "label74";
             this.label74.Size = new System.Drawing.Size(195, 21);
             this.label74.TabIndex = 20;
@@ -2677,7 +2683,8 @@
             this.label44.BackColor = System.Drawing.Color.Transparent;
             this.label44.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label44.ForeColor = System.Drawing.Color.White;
-            this.label44.Location = new System.Drawing.Point(34, 199);
+            this.label44.Location = new System.Drawing.Point(35, 231);
+            this.label44.Margin = new System.Windows.Forms.Padding(5);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(211, 21);
             this.label44.TabIndex = 20;
@@ -2689,7 +2696,8 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(34, 233);
+            this.label7.Location = new System.Drawing.Point(35, 265);
+            this.label7.Margin = new System.Windows.Forms.Padding(5);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(202, 21);
             this.label7.TabIndex = 20;
@@ -2739,7 +2747,8 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(34, 63);
+            this.label9.Location = new System.Drawing.Point(35, 107);
+            this.label9.Margin = new System.Windows.Forms.Padding(5);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(128, 21);
             this.label9.TabIndex = 20;
@@ -3163,8 +3172,6 @@
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label44;
         private WindowsFormsControlLibrary1.BunifuCustomTextbox bunifuCustomTextbox3;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.Label label46;
         private System.Windows.Forms.Label label50;
         private WindowsFormsControlLibrary1.BunifuCustomTextbox bunifuCustomTextbox4;
         private System.Windows.Forms.Label label52;
@@ -3239,5 +3246,7 @@
         public System.Windows.Forms.Button button28;
         public System.Windows.Forms.Button button18;
         public Bunifu.Framework.UI.BunifuMaterialTextbox bunifuMaterialTextbox4;
+        private System.Windows.Forms.Label label51;
+        private Bunifu.Framework.UI.BunifuSeparator bunifuSeparator5;
     }
 }
