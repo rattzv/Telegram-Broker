@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -87,10 +89,10 @@ namespace SocialApp___Telegram_Broker
             }
             else {
                 pictureBox7.Visible = true;
-                bool EmailValidate_status = x4526.EmailValidate(login);
+                bool EmailValidate_status = X4526.EmailValidate(login);
                 if (EmailValidate_status == true)
                 {
-                    string result = await Task.Factory.StartNew<string>(() => x4526.ProcessAuth(login, password), TaskCreationOptions.LongRunning);
+                    string result = await Task.Factory.StartNew<string>(() => X4526.ProcessAuth(login, password), TaskCreationOptions.LongRunning);
                     switch (result)
                     {
                         case "not_found":
@@ -103,6 +105,25 @@ namespace SocialApp___Telegram_Broker
                             this.label6.Text = "Сервер не отвечает, попробуйте позднее.";
                             break;
                         default:
+                            if (bunifuCheckbox1.Checked == true)
+                            {
+                                string Fileini = File.ReadAllText("system.ini", Encoding.UTF8);
+                                Newtonsoft.Json.Linq.JObject FileiniJson = Newtonsoft.Json.Linq.JObject.Parse(Fileini);
+                                FileiniJson["save_password"] = "true";
+                                FileiniJson["login"] = bunifuMaterialTextbox1.Text;
+                                FileiniJson["password"] = bunifuMaterialTextbox2.Text;
+                                string output = JsonConvert.SerializeObject(FileiniJson);
+                                System.IO.File.WriteAllText("system.ini", output);
+                            }
+                            else {
+                                string Fileini = File.ReadAllText("system.ini", Encoding.UTF8);
+                                Newtonsoft.Json.Linq.JObject FileiniJson = Newtonsoft.Json.Linq.JObject.Parse(Fileini);
+                                FileiniJson["save_password"] = "false";
+                                FileiniJson["login"] = "none";
+                                FileiniJson["password"] = "none";
+                                string output = JsonConvert.SerializeObject(FileiniJson);
+                                System.IO.File.WriteAllText("system.ini", output);
+                            }
                             this.label6.Text = "";
                             this.Hide();
                             using (Worksheet fr = new Worksheet()) {
@@ -143,8 +164,8 @@ namespace SocialApp___Telegram_Broker
             string password = bunifuMaterialTextbox3.Text;
             string rePassword = bunifuMaterialTextbox5.Text;
             string subscription_type = bunifuDropdown1.selectedValue;
-            string processorID = x4526.getProcessorID();
-            string motherBoardID = x4526.getMotherBoardID();
+            string processorID = X4526.GetProcessorID();
+            string motherBoardID = X4526.GetMotherBoardID();
             string hash_system = processorID + motherBoardID;
 
             if (login.Equals("") || password.Equals("") || rePassword.Equals(""))
@@ -160,10 +181,10 @@ namespace SocialApp___Telegram_Broker
                 }
                 else {
                     pictureBox8.Visible = true;
-                    bool EmailValidate_status = x4526.EmailValidate(login);
+                    bool EmailValidate_status = X4526.EmailValidate(login);
                     if (EmailValidate_status == true)
                     {
-                        string result = await Task.Factory.StartNew<string>(() => x4526.checkEmailExist(login, password, subscription_type, hash_system, motherBoardID, processorID), TaskCreationOptions.LongRunning);
+                        string result = await Task.Factory.StartNew<string>(() => X4526.CheckEmailExist(login, password, subscription_type, hash_system, motherBoardID, processorID), TaskCreationOptions.LongRunning);
                         if (result == "emailExist")
                         {
                             this.label10.Text = "Пользователь с таким email уже зарегистрирован.";
@@ -194,6 +215,31 @@ namespace SocialApp___Telegram_Broker
         private void Button3_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedIndex = 0;
+        }
+
+        private void Authorization_Load(object sender, EventArgs e)
+        {
+            if (File.Exists("system.ini"))
+            {
+                string Fileini = File.ReadAllText("system.ini", Encoding.UTF8);
+                QuickType.JsonOnloadData list = Newtonsoft.Json.JsonConvert.DeserializeObject<QuickType.JsonOnloadData>(Fileini);
+                if (list.save_password == "true")
+                {
+                    if (list.login != "none")
+                    {
+                        bunifuMaterialTextbox1.Text = list.login;
+                    }
+                    if (list.password != "none")
+                    {
+                        bunifuMaterialTextbox2.Text = list.password;
+                    }
+                    bunifuCheckbox1.Checked = true;
+                }
+            }
+            else {
+                string a = "{\"save_password\":\"false\",\"login\":\"none\",\"password\":\"none\",\"sms_activate_ru\":\"none\"}";
+                File.WriteAllText("system.ini", a);
+            }
         }
     }
 }

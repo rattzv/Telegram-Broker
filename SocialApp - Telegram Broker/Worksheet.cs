@@ -12,6 +12,7 @@ using System.IO;
 using CsvHelper;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace SocialApp___Telegram_Broker
 {
@@ -68,6 +69,13 @@ namespace SocialApp___Telegram_Broker
             bunifuCircleProgressbar1.Value = Convert.ToInt32(NrOfDays);
             label28.Text = Convert.ToString(NrOfDays);
             label30.Text = Convert.ToString(NrOfDays);
+            int n = bunifuDropdown10.Items.Length;
+            for (int i = 0; i < n; i++) {
+                bunifuDropdown10.selectedIndex = i;
+                bunifuDropdown3.AddItem(bunifuDropdown10.selectedValue);
+            }
+            bunifuDropdown3.selectedIndex = 0;
+
         }
         private void Button1_Click(object sender, EventArgs e)
         {
@@ -518,9 +526,67 @@ namespace SocialApp___Telegram_Broker
             FormPars.bunifuCustomTextbox3.Invoke(new Action(() => FormPars.bunifuCustomTextbox3.AppendText("[" + DateTime.Now + "] " + "Отмена операции. Остановка..." + Environment.NewLine)));
         }
 
-        private void Button15_Click(object sender, EventArgs e)
+        private async void Button15_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(@"Resources\Telegram.exe");
+
+            string ServiceName = bunifuDropdown10.selectedValue;
+            string ApiKey = bunifuMaterialTextbox5.Text;
+            string ResponceBallance = null;
+            string GetAmmountPhone = null;
+            this.tokenCancel = new CancellationTokenSource();
+            CancellationToken token = tokenCancel.Token;
+            await Task.Run(
+                async () =>
+                {
+                    await Task.Run(() => ResponceBallance = Sms_services.GetBallance(ServiceName, ApiKey));
+                    bunifuCustomTextbox3.Invoke(new Action(() => bunifuCustomTextbox3.AppendText("[" + DateTime.Now + "] " + "Текущий баланс: " + ResponceBallance + " руб." + Environment.NewLine)));
+                    CultureInfo temp_culture = Thread.CurrentThread.CurrentCulture;
+                    Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
+                    double ResponceBallance_double = double.Parse(ResponceBallance);
+                    Thread.CurrentThread.CurrentCulture = temp_culture;
+                    if (ResponceBallance_double > 8) {
+                        await Task.Run(() => GetAmmountPhone = Sms_services.GetAmmountPhone(ServiceName, ApiKey, "0"));
+                        bunifuCustomTextbox3.Invoke(new Action(() => bunifuCustomTextbox3.AppendText("[" + DateTime.Now + "] " + "Доступно номеров: " + GetAmmountPhone + " шт." + Environment.NewLine)));
+                        string gender = null;
+                        string region = null;
+                        bunifuDropdown2.Invoke(new Action(() => gender = bunifuDropdown2.selectedValue));
+                        bunifuDropdown9.Invoke(new Action(() => region = bunifuDropdown9.selectedValue));
+                        gender = Model_registration.SwitchGender(gender);
+                        region = Model_registration.SwitchRegion(region);
+                        string JsonGenerateName = Model_registration.GetUinames(gender, region);
+                        bunifuCustomTextbox3.Invoke(new Action(() => bunifuCustomTextbox3.AppendText("[" + DateTime.Now + "] " + "Доступно номеров: " + JsonGenerateName + " шт." + Environment.NewLine)));
+                    }
+                }, token);
+        }
+
+        private void Button14_Click(object sender, EventArgs e)
+        {
+            this.tokenCancel.Cancel();
+        }
+
+        private void Button30_Click(object sender, EventArgs e)
+        {
+            string ServiceName = bunifuDropdown10.selectedValue;
+            string ApiKey = bunifuMaterialTextbox5.Text;
+            string ResponceBallance = Sms_services.GetBallance(ServiceName, ApiKey);
+            label77.Text = ResponceBallance;
+        }
+
+        private void Button29_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string Fileini = File.ReadAllText("system.ini", Encoding.UTF8);
+                Newtonsoft.Json.Linq.JObject FileiniJson = Newtonsoft.Json.Linq.JObject.Parse(Fileini);
+                FileiniJson["sms_activate_ru"] = bunifuMaterialTextbox5.Text;
+                string output = JsonConvert.SerializeObject(FileiniJson);
+                System.IO.File.WriteAllText("system.ini", output);
+                FormPars.PushMessage.ShowBalloonTip(1000, "API ключ успешно сохранен", "Сохранение завершено", ToolTipIcon.Info);
+            }
+            catch {
+                MessageBox.Show("Ошибка сохранения");
+            }
+           
         }
     }
 }

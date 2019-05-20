@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Worksheet));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -89,6 +89,15 @@
             this.bunifuCircleProgressbar1 = new Bunifu.Framework.UI.BunifuCircleProgressbar();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.label77 = new System.Windows.Forms.Label();
+            this.label76 = new System.Windows.Forms.Label();
+            this.label75 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.button30 = new System.Windows.Forms.Button();
+            this.button29 = new System.Windows.Forms.Button();
+            this.bunifuMaterialTextbox5 = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.bunifuDropdown10 = new Bunifu.Framework.UI.BunifuDropdown();
+            this.label46 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label32 = new System.Windows.Forms.Label();
@@ -234,6 +243,7 @@
             this.tabPage1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -696,11 +706,11 @@
             this.label31.BackColor = System.Drawing.Color.Transparent;
             this.label31.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label31.ForeColor = System.Drawing.Color.White;
-            this.label31.Location = new System.Drawing.Point(422, 288);
+            this.label31.Location = new System.Drawing.Point(421, 288);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(420, 42);
+            this.label31.Size = new System.Drawing.Size(417, 42);
             this.label31.TabIndex = 18;
-            this.label31.Text = "По истечению указанного срока доступ к ПО будет \r\nприостановлен.";
+            this.label31.Text = "По истечении указанного срока доступ к ПО будет \r\nприостановлен.";
             // 
             // label29
             // 
@@ -733,7 +743,7 @@
             this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button11.Font = new System.Drawing.Font("Century Gothic", 11F);
             this.button11.ForeColor = System.Drawing.Color.White;
-            this.button11.Location = new System.Drawing.Point(41, 477);
+            this.button11.Location = new System.Drawing.Point(40, 477);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(308, 40);
             this.button11.TabIndex = 14;
@@ -746,7 +756,7 @@
             this.label26.BackColor = System.Drawing.Color.Transparent;
             this.label26.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label26.ForeColor = System.Drawing.Color.White;
-            this.label26.Location = new System.Drawing.Point(36, 403);
+            this.label26.Location = new System.Drawing.Point(35, 403);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(154, 21);
             this.label26.TabIndex = 13;
@@ -758,7 +768,7 @@
             this.label24.BackColor = System.Drawing.Color.Transparent;
             this.label24.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label24.ForeColor = System.Drawing.Color.White;
-            this.label24.Location = new System.Drawing.Point(36, 332);
+            this.label24.Location = new System.Drawing.Point(35, 332);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(122, 21);
             this.label24.TabIndex = 13;
@@ -820,7 +830,7 @@
             this.label25.BackColor = System.Drawing.Color.Transparent;
             this.label25.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label25.ForeColor = System.Drawing.Color.White;
-            this.label25.Location = new System.Drawing.Point(36, 262);
+            this.label25.Location = new System.Drawing.Point(35, 262);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(135, 21);
             this.label25.TabIndex = 9;
@@ -959,7 +969,7 @@
             this.label18.BackColor = System.Drawing.Color.Transparent;
             this.label18.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label18.ForeColor = System.Drawing.Color.White;
-            this.label18.Location = new System.Drawing.Point(36, 152);
+            this.label18.Location = new System.Drawing.Point(35, 152);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(122, 21);
             this.label18.TabIndex = 3;
@@ -971,7 +981,7 @@
             this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(36, 123);
+            this.label16.Location = new System.Drawing.Point(35, 123);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(148, 21);
             this.label16.TabIndex = 3;
@@ -1007,7 +1017,7 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(36, 94);
+            this.label11.Location = new System.Drawing.Point(35, 94);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(136, 21);
             this.label11.TabIndex = 3;
@@ -1061,10 +1071,152 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(59)))));
-            this.panel7.Location = new System.Drawing.Point(0, 4);
+            this.panel7.Controls.Add(this.label77);
+            this.panel7.Controls.Add(this.label76);
+            this.panel7.Controls.Add(this.label75);
+            this.panel7.Controls.Add(this.label47);
+            this.panel7.Controls.Add(this.button30);
+            this.panel7.Controls.Add(this.button29);
+            this.panel7.Controls.Add(this.bunifuMaterialTextbox5);
+            this.panel7.Controls.Add(this.bunifuDropdown10);
+            this.panel7.Controls.Add(this.label46);
+            this.panel7.Location = new System.Drawing.Point(-1, 5);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(981, 571);
             this.panel7.TabIndex = 7;
+            // 
+            // label77
+            // 
+            this.label77.AutoSize = true;
+            this.label77.BackColor = System.Drawing.Color.Transparent;
+            this.label77.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.label77.ForeColor = System.Drawing.Color.White;
+            this.label77.Location = new System.Drawing.Point(237, 184);
+            this.label77.Margin = new System.Windows.Forms.Padding(5);
+            this.label77.Name = "label77";
+            this.label77.Size = new System.Drawing.Size(100, 21);
+            this.label77.TabIndex = 40;
+            this.label77.Text = "неизвестно";
+            // 
+            // label76
+            // 
+            this.label76.AutoSize = true;
+            this.label76.BackColor = System.Drawing.Color.Transparent;
+            this.label76.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.label76.ForeColor = System.Drawing.Color.White;
+            this.label76.Location = new System.Drawing.Point(35, 184);
+            this.label76.Margin = new System.Windows.Forms.Padding(5);
+            this.label76.Name = "label76";
+            this.label76.Size = new System.Drawing.Size(167, 21);
+            this.label76.TabIndex = 40;
+            this.label76.Text = "Доступный баланс:";
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.BackColor = System.Drawing.Color.Transparent;
+            this.label75.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.label75.ForeColor = System.Drawing.Color.White;
+            this.label75.Location = new System.Drawing.Point(35, 146);
+            this.label75.Margin = new System.Windows.Forms.Padding(5);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(82, 21);
+            this.label75.TabIndex = 40;
+            this.label75.Text = "API ключ:";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.BackColor = System.Drawing.Color.Transparent;
+            this.label47.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.label47.ForeColor = System.Drawing.Color.White;
+            this.label47.Location = new System.Drawing.Point(35, 101);
+            this.label47.Margin = new System.Windows.Forms.Padding(5);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(108, 21);
+            this.label47.TabIndex = 40;
+            this.label47.Text = "SMS-сервис:";
+            // 
+            // button30
+            // 
+            this.button30.BackColor = System.Drawing.Color.Transparent;
+            this.button30.FlatAppearance.BorderSize = 0;
+            this.button30.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button30.Font = new System.Drawing.Font("Century Gothic", 11F);
+            this.button30.ForeColor = System.Drawing.Color.White;
+            this.button30.Image = global::SocialApp___Telegram_Broker.Properties.Resources.icons8_refresh_20px;
+            this.button30.Location = new System.Drawing.Point(207, 182);
+            this.button30.Margin = new System.Windows.Forms.Padding(5);
+            this.button30.Name = "button30";
+            this.button30.Size = new System.Drawing.Size(25, 25);
+            this.button30.TabIndex = 39;
+            this.button30.UseVisualStyleBackColor = false;
+            this.button30.Click += new System.EventHandler(this.Button30_Click);
+            // 
+            // button29
+            // 
+            this.button29.BackColor = System.Drawing.Color.SeaGreen;
+            this.button29.FlatAppearance.BorderSize = 0;
+            this.button29.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button29.Font = new System.Drawing.Font("Century Gothic", 11F);
+            this.button29.ForeColor = System.Drawing.Color.White;
+            this.button29.Location = new System.Drawing.Point(284, 234);
+            this.button29.Margin = new System.Windows.Forms.Padding(5);
+            this.button29.Name = "button29";
+            this.button29.Size = new System.Drawing.Size(195, 50);
+            this.button29.TabIndex = 39;
+            this.button29.Text = "Сохранить";
+            this.button29.UseVisualStyleBackColor = false;
+            this.button29.Click += new System.EventHandler(this.Button29_Click);
+            // 
+            // bunifuMaterialTextbox5
+            // 
+            this.bunifuMaterialTextbox5.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.bunifuMaterialTextbox5.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.bunifuMaterialTextbox5.ForeColor = System.Drawing.Color.White;
+            this.bunifuMaterialTextbox5.HintForeColor = System.Drawing.Color.White;
+            this.bunifuMaterialTextbox5.HintText = "Введите api-ключ";
+            this.bunifuMaterialTextbox5.isPassword = false;
+            this.bunifuMaterialTextbox5.LineFocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(27)))), ((int)(((byte)(55)))));
+            this.bunifuMaterialTextbox5.LineIdleColor = System.Drawing.Color.Gray;
+            this.bunifuMaterialTextbox5.LineMouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(27)))), ((int)(((byte)(55)))));
+            this.bunifuMaterialTextbox5.LineThickness = 3;
+            this.bunifuMaterialTextbox5.Location = new System.Drawing.Point(212, 139);
+            this.bunifuMaterialTextbox5.Margin = new System.Windows.Forms.Padding(5);
+            this.bunifuMaterialTextbox5.Name = "bunifuMaterialTextbox5";
+            this.bunifuMaterialTextbox5.Size = new System.Drawing.Size(267, 35);
+            this.bunifuMaterialTextbox5.TabIndex = 38;
+            this.bunifuMaterialTextbox5.Text = "d6f715632255A40de5bf6d2160c7dA31";
+            this.bunifuMaterialTextbox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
+            // bunifuDropdown10
+            // 
+            this.bunifuDropdown10.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuDropdown10.BorderRadius = 0;
+            this.bunifuDropdown10.DisabledColor = System.Drawing.Color.Gray;
+            this.bunifuDropdown10.ForeColor = System.Drawing.Color.White;
+            this.bunifuDropdown10.Items = new string[] {
+        "sms-activate.ru"};
+            this.bunifuDropdown10.Location = new System.Drawing.Point(212, 94);
+            this.bunifuDropdown10.Margin = new System.Windows.Forms.Padding(5);
+            this.bunifuDropdown10.Name = "bunifuDropdown10";
+            this.bunifuDropdown10.NomalColor = System.Drawing.Color.SeaGreen;
+            this.bunifuDropdown10.onHoverColor = System.Drawing.Color.SeaGreen;
+            this.bunifuDropdown10.selectedIndex = 0;
+            this.bunifuDropdown10.Size = new System.Drawing.Size(267, 35);
+            this.bunifuDropdown10.TabIndex = 37;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.BackColor = System.Drawing.Color.Transparent;
+            this.label46.Font = new System.Drawing.Font("Century Gothic", 18F);
+            this.label46.ForeColor = System.Drawing.Color.White;
+            this.label46.Location = new System.Drawing.Point(35, 46);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(229, 30);
+            this.label46.TabIndex = 7;
+            this.label46.Text = "API SMS-сервисов";
             // 
             // tabPage3
             // 
@@ -1293,10 +1445,10 @@
             this.button28.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button28.Font = new System.Drawing.Font("Century Gothic", 11F);
             this.button28.ForeColor = System.Drawing.Color.Transparent;
-            this.button28.Location = new System.Drawing.Point(531, 474);
+            this.button28.Location = new System.Drawing.Point(531, 507);
             this.button28.Margin = new System.Windows.Forms.Padding(5);
             this.button28.Name = "button28";
-            this.button28.Size = new System.Drawing.Size(195, 40);
+            this.button28.Size = new System.Drawing.Size(195, 50);
             this.button28.TabIndex = 39;
             this.button28.Text = "Стоп";
             this.button28.UseVisualStyleBackColor = false;
@@ -1307,7 +1459,7 @@
             this.bunifuSeparator9.BackColor = System.Drawing.Color.Transparent;
             this.bunifuSeparator9.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
             this.bunifuSeparator9.LineThickness = 1;
-            this.bunifuSeparator9.Location = new System.Drawing.Point(41, 383);
+            this.bunifuSeparator9.Location = new System.Drawing.Point(41, 401);
             this.bunifuSeparator9.Name = "bunifuSeparator9";
             this.bunifuSeparator9.Size = new System.Drawing.Size(465, 20);
             this.bunifuSeparator9.TabIndex = 38;
@@ -1319,7 +1471,7 @@
             this.bunifuSeparator8.BackColor = System.Drawing.Color.Transparent;
             this.bunifuSeparator8.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
             this.bunifuSeparator8.LineThickness = 1;
-            this.bunifuSeparator8.Location = new System.Drawing.Point(39, 268);
+            this.bunifuSeparator8.Location = new System.Drawing.Point(39, 275);
             this.bunifuSeparator8.Name = "bunifuSeparator8";
             this.bunifuSeparator8.Size = new System.Drawing.Size(467, 20);
             this.bunifuSeparator8.TabIndex = 38;
@@ -1336,7 +1488,7 @@
             this.button21.Location = new System.Drawing.Point(246, 111);
             this.button21.Margin = new System.Windows.Forms.Padding(5);
             this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(20, 28);
+            this.button21.Size = new System.Drawing.Size(20, 35);
             this.button21.TabIndex = 26;
             this.button21.Text = "+";
             this.button21.UseVisualStyleBackColor = false;
@@ -1352,7 +1504,7 @@
             this.button26.Location = new System.Drawing.Point(342, 111);
             this.button26.Margin = new System.Windows.Forms.Padding(5);
             this.button26.Name = "button26";
-            this.button26.Size = new System.Drawing.Size(20, 28);
+            this.button26.Size = new System.Drawing.Size(20, 35);
             this.button26.TabIndex = 26;
             this.button26.Text = "+";
             this.button26.UseVisualStyleBackColor = false;
@@ -1368,7 +1520,7 @@
             this.button20.Location = new System.Drawing.Point(206, 111);
             this.button20.Margin = new System.Windows.Forms.Padding(5);
             this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(20, 28);
+            this.button20.Size = new System.Drawing.Size(20, 35);
             this.button20.TabIndex = 26;
             this.button20.Text = "-";
             this.button20.UseVisualStyleBackColor = false;
@@ -1383,11 +1535,11 @@
             this.button24.ForeColor = System.Drawing.Color.White;
             this.button24.Image = global::SocialApp___Telegram_Broker.Properties.Resources.icons8_opened_folder_30px;
             this.button24.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button24.Location = new System.Drawing.Point(281, 474);
+            this.button24.Location = new System.Drawing.Point(281, 507);
             this.button24.Margin = new System.Windows.Forms.Padding(0);
             this.button24.Name = "button24";
             this.button24.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.button24.Size = new System.Drawing.Size(225, 40);
+            this.button24.Size = new System.Drawing.Size(225, 50);
             this.button24.TabIndex = 0;
             this.button24.Text = "   Открыть папку";
             this.button24.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -1404,11 +1556,11 @@
             this.button23.ForeColor = System.Drawing.Color.White;
             this.button23.Image = global::SocialApp___Telegram_Broker.Properties.Resources.icons8_save_30px;
             this.button23.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button23.Location = new System.Drawing.Point(281, 474);
+            this.button23.Location = new System.Drawing.Point(281, 507);
             this.button23.Margin = new System.Windows.Forms.Padding(0);
             this.button23.Name = "button23";
             this.button23.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.button23.Size = new System.Drawing.Size(225, 40);
+            this.button23.Size = new System.Drawing.Size(225, 50);
             this.button23.TabIndex = 0;
             this.button23.Text = "   Сохранить";
             this.button23.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -1425,11 +1577,11 @@
             this.button22.ForeColor = System.Drawing.Color.White;
             this.button22.Image = global::SocialApp___Telegram_Broker.Properties.Resources.icons8_view_file_30px;
             this.button22.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button22.Location = new System.Drawing.Point(39, 474);
+            this.button22.Location = new System.Drawing.Point(39, 507);
             this.button22.Margin = new System.Windows.Forms.Padding(0);
             this.button22.Name = "button22";
             this.button22.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.button22.Size = new System.Drawing.Size(225, 40);
+            this.button22.Size = new System.Drawing.Size(225, 50);
             this.button22.TabIndex = 0;
             this.button22.Text = "   Просмотреть";
             this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -1446,7 +1598,7 @@
             this.bunifuCustomTextbox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.bunifuCustomTextbox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.bunifuCustomTextbox6.ForeColor = System.Drawing.Color.White;
-            this.bunifuCustomTextbox6.Location = new System.Drawing.Point(226, 119);
+            this.bunifuCustomTextbox6.Location = new System.Drawing.Point(226, 122);
             this.bunifuCustomTextbox6.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuCustomTextbox6.MaxLength = 2;
             this.bunifuCustomTextbox6.Name = "bunifuCustomTextbox6";
@@ -1466,7 +1618,7 @@
             this.button27.Location = new System.Drawing.Point(302, 111);
             this.button27.Margin = new System.Windows.Forms.Padding(5);
             this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(20, 28);
+            this.button27.Size = new System.Drawing.Size(20, 35);
             this.button27.TabIndex = 26;
             this.button27.Text = "-";
             this.button27.UseVisualStyleBackColor = false;
@@ -1481,7 +1633,7 @@
             this.bunifuCustomTextbox9.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.bunifuCustomTextbox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.bunifuCustomTextbox9.ForeColor = System.Drawing.Color.White;
-            this.bunifuCustomTextbox9.Location = new System.Drawing.Point(322, 119);
+            this.bunifuCustomTextbox9.Location = new System.Drawing.Point(322, 122);
             this.bunifuCustomTextbox9.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuCustomTextbox9.MaxLength = 2;
             this.bunifuCustomTextbox9.Name = "bunifuCustomTextbox9";
@@ -1497,7 +1649,7 @@
             this.bunifuCheckbox4.Checked = true;
             this.bunifuCheckbox4.CheckedOnColor = System.Drawing.Color.SeaGreen;
             this.bunifuCheckbox4.ForeColor = System.Drawing.Color.White;
-            this.bunifuCheckbox4.Location = new System.Drawing.Point(344, 355);
+            this.bunifuCheckbox4.Location = new System.Drawing.Point(342, 369);
             this.bunifuCheckbox4.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuCheckbox4.Name = "bunifuCheckbox4";
             this.bunifuCheckbox4.Size = new System.Drawing.Size(20, 20);
@@ -1510,7 +1662,7 @@
             this.bunifuCheckbox3.Checked = true;
             this.bunifuCheckbox3.CheckedOnColor = System.Drawing.Color.SeaGreen;
             this.bunifuCheckbox3.ForeColor = System.Drawing.Color.White;
-            this.bunifuCheckbox3.Location = new System.Drawing.Point(344, 325);
+            this.bunifuCheckbox3.Location = new System.Drawing.Point(342, 339);
             this.bunifuCheckbox3.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuCheckbox3.Name = "bunifuCheckbox3";
             this.bunifuCheckbox3.Size = new System.Drawing.Size(20, 20);
@@ -1523,7 +1675,7 @@
             this.bunifuCheckbox2.Checked = true;
             this.bunifuCheckbox2.CheckedOnColor = System.Drawing.Color.SeaGreen;
             this.bunifuCheckbox2.ForeColor = System.Drawing.Color.White;
-            this.bunifuCheckbox2.Location = new System.Drawing.Point(342, 218);
+            this.bunifuCheckbox2.Location = new System.Drawing.Point(342, 243);
             this.bunifuCheckbox2.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuCheckbox2.Name = "bunifuCheckbox2";
             this.bunifuCheckbox2.Size = new System.Drawing.Size(20, 20);
@@ -1536,7 +1688,7 @@
             this.bunifuCheckbox1.Checked = true;
             this.bunifuCheckbox1.CheckedOnColor = System.Drawing.Color.SeaGreen;
             this.bunifuCheckbox1.ForeColor = System.Drawing.Color.White;
-            this.bunifuCheckbox1.Location = new System.Drawing.Point(342, 187);
+            this.bunifuCheckbox1.Location = new System.Drawing.Point(342, 201);
             this.bunifuCheckbox1.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuCheckbox1.Name = "bunifuCheckbox1";
             this.bunifuCheckbox1.Size = new System.Drawing.Size(20, 20);
@@ -1550,13 +1702,13 @@
             this.bunifuDropdown8.ForeColor = System.Drawing.Color.White;
             this.bunifuDropdown8.Items = new string[] {
         ".csv"};
-            this.bunifuDropdown8.Location = new System.Drawing.Point(240, 436);
+            this.bunifuDropdown8.Location = new System.Drawing.Point(240, 458);
             this.bunifuDropdown8.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuDropdown8.Name = "bunifuDropdown8";
             this.bunifuDropdown8.NomalColor = System.Drawing.Color.SeaGreen;
             this.bunifuDropdown8.onHoverColor = System.Drawing.Color.SeaGreen;
             this.bunifuDropdown8.selectedIndex = 0;
-            this.bunifuDropdown8.Size = new System.Drawing.Size(266, 28);
+            this.bunifuDropdown8.Size = new System.Drawing.Size(266, 35);
             this.bunifuDropdown8.TabIndex = 36;
             this.bunifuDropdown8.Visible = false;
             // 
@@ -1572,13 +1724,13 @@
         "только администраторы",
         "всех",
         "всех, кроме ботов"};
-            this.bunifuDropdown7.Location = new System.Drawing.Point(181, 149);
+            this.bunifuDropdown7.Location = new System.Drawing.Point(181, 156);
             this.bunifuDropdown7.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuDropdown7.Name = "bunifuDropdown7";
             this.bunifuDropdown7.NomalColor = System.Drawing.Color.SeaGreen;
             this.bunifuDropdown7.onHoverColor = System.Drawing.Color.SeaGreen;
             this.bunifuDropdown7.selectedIndex = 4;
-            this.bunifuDropdown7.Size = new System.Drawing.Size(325, 28);
+            this.bunifuDropdown7.Size = new System.Drawing.Size(325, 35);
             this.bunifuDropdown7.TabIndex = 36;
             // 
             // bunifuDropdown6
@@ -1599,7 +1751,7 @@
             this.bunifuDropdown6.NomalColor = System.Drawing.Color.SeaGreen;
             this.bunifuDropdown6.onHoverColor = System.Drawing.Color.SeaGreen;
             this.bunifuDropdown6.selectedIndex = 4;
-            this.bunifuDropdown6.Size = new System.Drawing.Size(135, 28);
+            this.bunifuDropdown6.Size = new System.Drawing.Size(135, 35);
             this.bunifuDropdown6.TabIndex = 36;
             this.bunifuDropdown6.onItemSelected += new System.EventHandler(this.BunifuDropdown6_onItemSelected);
             // 
@@ -1609,7 +1761,7 @@
             this.panel15.Location = new System.Drawing.Point(207, 111);
             this.panel15.Margin = new System.Windows.Forms.Padding(5);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(60, 28);
+            this.panel15.Size = new System.Drawing.Size(60, 35);
             this.panel15.TabIndex = 34;
             // 
             // bunifuMaterialTextbox4
@@ -1637,7 +1789,7 @@
             this.panel18.Location = new System.Drawing.Point(302, 111);
             this.panel18.Margin = new System.Windows.Forms.Padding(5);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(60, 28);
+            this.panel18.Size = new System.Drawing.Size(60, 35);
             this.panel18.TabIndex = 34;
             // 
             // label61
@@ -1685,7 +1837,7 @@
             this.label64.BackColor = System.Drawing.Color.Transparent;
             this.label64.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label64.ForeColor = System.Drawing.Color.White;
-            this.label64.Location = new System.Drawing.Point(35, 355);
+            this.label64.Location = new System.Drawing.Point(35, 369);
             this.label64.Margin = new System.Windows.Forms.Padding(5);
             this.label64.Name = "label64";
             this.label64.Size = new System.Drawing.Size(214, 21);
@@ -1698,7 +1850,7 @@
             this.label67.BackColor = System.Drawing.Color.Transparent;
             this.label67.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label67.ForeColor = System.Drawing.Color.White;
-            this.label67.Location = new System.Drawing.Point(35, 440);
+            this.label67.Location = new System.Drawing.Point(35, 465);
             this.label67.Margin = new System.Windows.Forms.Padding(5);
             this.label67.Name = "label67";
             this.label67.Size = new System.Drawing.Size(195, 21);
@@ -1712,7 +1864,7 @@
             this.label63.BackColor = System.Drawing.Color.Transparent;
             this.label63.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label63.ForeColor = System.Drawing.Color.White;
-            this.label63.Location = new System.Drawing.Point(35, 325);
+            this.label63.Location = new System.Drawing.Point(35, 339);
             this.label63.Margin = new System.Windows.Forms.Padding(5);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(224, 21);
@@ -1725,7 +1877,7 @@
             this.label62.BackColor = System.Drawing.Color.Transparent;
             this.label62.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label62.ForeColor = System.Drawing.Color.White;
-            this.label62.Location = new System.Drawing.Point(35, 218);
+            this.label62.Location = new System.Drawing.Point(35, 232);
             this.label62.Margin = new System.Windows.Forms.Padding(5);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(296, 42);
@@ -1738,7 +1890,7 @@
             this.label58.BackColor = System.Drawing.Color.Transparent;
             this.label58.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label58.ForeColor = System.Drawing.Color.White;
-            this.label58.Location = new System.Drawing.Point(35, 187);
+            this.label58.Location = new System.Drawing.Point(35, 201);
             this.label58.Margin = new System.Windows.Forms.Padding(5);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(268, 21);
@@ -1751,7 +1903,7 @@
             this.label57.BackColor = System.Drawing.Color.Transparent;
             this.label57.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label57.ForeColor = System.Drawing.Color.White;
-            this.label57.Location = new System.Drawing.Point(35, 152);
+            this.label57.Location = new System.Drawing.Point(35, 163);
             this.label57.Margin = new System.Windows.Forms.Padding(5);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(136, 21);
@@ -1764,7 +1916,7 @@
             this.label66.BackColor = System.Drawing.Color.Transparent;
             this.label66.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label66.ForeColor = System.Drawing.Color.White;
-            this.label66.Location = new System.Drawing.Point(35, 411);
+            this.label66.Location = new System.Drawing.Point(35, 429);
             this.label66.Margin = new System.Windows.Forms.Padding(5);
             this.label66.Name = "label66";
             this.label66.Size = new System.Drawing.Size(145, 19);
@@ -1778,7 +1930,7 @@
             this.label65.BackColor = System.Drawing.Color.Transparent;
             this.label65.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label65.ForeColor = System.Drawing.Color.White;
-            this.label65.Location = new System.Drawing.Point(35, 296);
+            this.label65.Location = new System.Drawing.Point(35, 303);
             this.label65.Margin = new System.Windows.Forms.Padding(5);
             this.label65.Name = "label65";
             this.label65.Size = new System.Drawing.Size(184, 19);
@@ -1805,10 +1957,10 @@
             this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button18.Font = new System.Drawing.Font("Century Gothic", 11F);
             this.button18.ForeColor = System.Drawing.Color.White;
-            this.button18.Location = new System.Drawing.Point(736, 474);
+            this.button18.Location = new System.Drawing.Point(736, 507);
             this.button18.Margin = new System.Windows.Forms.Padding(5);
             this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(195, 40);
+            this.button18.Size = new System.Drawing.Size(195, 50);
             this.button18.TabIndex = 31;
             this.button18.Text = "Начать";
             this.button18.UseVisualStyleBackColor = false;
@@ -1828,7 +1980,7 @@
             this.bunifuCustomTextbox5.ReadOnly = true;
             this.bunifuCustomTextbox5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.bunifuCustomTextbox5.ShortcutsEnabled = false;
-            this.bunifuCustomTextbox5.Size = new System.Drawing.Size(400, 405);
+            this.bunifuCustomTextbox5.Size = new System.Drawing.Size(400, 434);
             this.bunifuCustomTextbox5.TabIndex = 29;
             // 
             // label54
@@ -2412,10 +2564,10 @@
             this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button15.Font = new System.Drawing.Font("Century Gothic", 11F);
             this.button15.ForeColor = System.Drawing.Color.Transparent;
-            this.button15.Location = new System.Drawing.Point(735, 471);
+            this.button15.Location = new System.Drawing.Point(735, 504);
             this.button15.Margin = new System.Windows.Forms.Padding(5);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(195, 40);
+            this.button15.Size = new System.Drawing.Size(195, 50);
             this.button15.TabIndex = 26;
             this.button15.Text = "Начать";
             this.button15.UseVisualStyleBackColor = false;
@@ -2428,13 +2580,14 @@
             this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button14.Font = new System.Drawing.Font("Century Gothic", 11F);
             this.button14.ForeColor = System.Drawing.Color.Transparent;
-            this.button14.Location = new System.Drawing.Point(530, 471);
+            this.button14.Location = new System.Drawing.Point(530, 504);
             this.button14.Margin = new System.Windows.Forms.Padding(5);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(195, 40);
+            this.button14.Size = new System.Drawing.Size(195, 50);
             this.button14.TabIndex = 26;
             this.button14.Text = "Стоп";
             this.button14.UseVisualStyleBackColor = false;
+            this.button14.Click += new System.EventHandler(this.Button14_Click);
             // 
             // bunifuCustomTextbox3
             // 
@@ -2450,7 +2603,7 @@
             this.bunifuCustomTextbox3.ReadOnly = true;
             this.bunifuCustomTextbox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.bunifuCustomTextbox3.ShortcutsEnabled = false;
-            this.bunifuCustomTextbox3.Size = new System.Drawing.Size(400, 405);
+            this.bunifuCustomTextbox3.Size = new System.Drawing.Size(400, 434);
             this.bunifuCustomTextbox3.TabIndex = 22;
             // 
             // bunifuCustomTextbox2
@@ -2507,7 +2660,7 @@
             this.bunifuDropdown9.Name = "bunifuDropdown9";
             this.bunifuDropdown9.NomalColor = System.Drawing.Color.SeaGreen;
             this.bunifuDropdown9.onHoverColor = System.Drawing.Color.SeaGreen;
-            this.bunifuDropdown9.selectedIndex = 2;
+            this.bunifuDropdown9.selectedIndex = 0;
             this.bunifuDropdown9.Size = new System.Drawing.Size(252, 28);
             this.bunifuDropdown9.TabIndex = 2;
             // 
@@ -2536,14 +2689,13 @@
             this.bunifuDropdown3.BorderRadius = 0;
             this.bunifuDropdown3.DisabledColor = System.Drawing.Color.Gray;
             this.bunifuDropdown3.ForeColor = System.Drawing.Color.White;
-            this.bunifuDropdown3.Items = new string[] {
-        "sms.ru"};
+            this.bunifuDropdown3.Items = new string[0];
             this.bunifuDropdown3.Location = new System.Drawing.Point(256, 417);
             this.bunifuDropdown3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 5);
             this.bunifuDropdown3.Name = "bunifuDropdown3";
             this.bunifuDropdown3.NomalColor = System.Drawing.Color.SeaGreen;
             this.bunifuDropdown3.onHoverColor = System.Drawing.Color.SeaGreen;
-            this.bunifuDropdown3.selectedIndex = 0;
+            this.bunifuDropdown3.selectedIndex = -1;
             this.bunifuDropdown3.Size = new System.Drawing.Size(252, 28);
             this.bunifuDropdown3.TabIndex = 4;
             // 
@@ -2634,9 +2786,9 @@
             this.label5.Location = new System.Drawing.Point(35, 421);
             this.label5.Margin = new System.Windows.Forms.Padding(5);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(107, 21);
+            this.label5.Size = new System.Drawing.Size(108, 21);
             this.label5.TabIndex = 20;
-            this.label5.Text = "SMS сервис:";
+            this.label5.Text = "SMS-сервис:";
             // 
             // label45
             // 
@@ -2794,23 +2946,23 @@
             // bunifuCustomDataGrid1
             // 
             this.bunifuCustomDataGrid1.AllowUserToAddRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(59)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(227)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(59)))));
-            this.bunifuCustomDataGrid1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle45.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle45.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(59)))));
+            dataGridViewCellStyle45.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(227)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle45.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(59)))));
+            this.bunifuCustomDataGrid1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle45;
             this.bunifuCustomDataGrid1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.bunifuCustomDataGrid1.BackgroundColor = System.Drawing.Color.White;
             this.bunifuCustomDataGrid1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.bunifuCustomDataGrid1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.bunifuCustomDataGrid1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(27)))), ((int)(((byte)(55)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.bunifuCustomDataGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle46.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(27)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle46.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle46.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle46.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle46.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.bunifuCustomDataGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle46;
             this.bunifuCustomDataGrid1.ColumnHeadersHeight = 50;
             this.bunifuCustomDataGrid1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.firstname,
@@ -2819,14 +2971,14 @@
             this.role,
             this.status_online,
             this.was_online});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(227)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.bunifuCustomDataGrid1.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle47.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle47.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle47.ForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle47.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(227)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle47.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle47.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.bunifuCustomDataGrid1.DefaultCellStyle = dataGridViewCellStyle47;
             this.bunifuCustomDataGrid1.DoubleBuffered = true;
             this.bunifuCustomDataGrid1.EnableHeadersVisualStyles = false;
             this.bunifuCustomDataGrid1.HeaderBgColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(27)))), ((int)(((byte)(55)))));
@@ -2838,11 +2990,11 @@
             this.bunifuCustomDataGrid1.ReadOnly = true;
             this.bunifuCustomDataGrid1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.bunifuCustomDataGrid1.RowHeadersVisible = false;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(59)))));
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(227)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(59)))));
-            this.bunifuCustomDataGrid1.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle48.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle48.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(59)))));
+            dataGridViewCellStyle48.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(227)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle48.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(59)))));
+            this.bunifuCustomDataGrid1.RowsDefaultCellStyle = dataGridViewCellStyle48;
             this.bunifuCustomDataGrid1.RowTemplate.DividerHeight = 2;
             this.bunifuCustomDataGrid1.RowTemplate.Height = 30;
             this.bunifuCustomDataGrid1.RowTemplate.ReadOnly = true;
@@ -2992,7 +3144,7 @@
             this.PushMessage.Text = "Telegram Broker";
             this.PushMessage.Visible = true;
             // 
-            // Form2
+            // Worksheet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -3006,8 +3158,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "Form2";
+            this.Name = "Worksheet";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Telegram Broker";
             this.Load += new System.EventHandler(this.Form2_Load);
@@ -3024,6 +3175,8 @@
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
@@ -3248,5 +3401,14 @@
         public Bunifu.Framework.UI.BunifuMaterialTextbox bunifuMaterialTextbox4;
         private System.Windows.Forms.Label label51;
         private Bunifu.Framework.UI.BunifuSeparator bunifuSeparator5;
+        private System.Windows.Forms.Label label46;
+        private Bunifu.Framework.UI.BunifuDropdown bunifuDropdown10;
+        private System.Windows.Forms.Label label77;
+        private System.Windows.Forms.Label label76;
+        private System.Windows.Forms.Label label75;
+        private System.Windows.Forms.Label label47;
+        public System.Windows.Forms.Button button30;
+        public System.Windows.Forms.Button button29;
+        public Bunifu.Framework.UI.BunifuMaterialTextbox bunifuMaterialTextbox5;
     }
 }

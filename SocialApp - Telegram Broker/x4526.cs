@@ -15,7 +15,7 @@ using Newtonsoft.Json.Converters;
 
 namespace SocialApp___Telegram_Broker
 {
-    class x4526
+    class X4526
     {
         public static bool EmailValidate(string login)
         {
@@ -30,11 +30,13 @@ namespace SocialApp___Telegram_Broker
             using (var webClient = new WebClient())
             {
                 // Создаём коллекцию параметров
-                var pars = new NameValueCollection();
-                // Добавляем необходимые параметры в виде пар ключ, значение
-                pars.Add("email", Convert.ToString(login));
-                pars.Add("password", Convert.ToString(password));
-                pars.Add("key", "13sd54f68s7dr435v1b4nr3y6m8s7j3hd41cm3fu8yc43x");
+                var pars = new NameValueCollection
+                {
+                    // Добавляем необходимые параметры в виде пар ключ, значение
+                    { "email", Convert.ToString(login) },
+                    { "password", Convert.ToString(password) },
+                    { "key", "13sd54f68s7dr435v1b4nr3y6m8s7j3hd41cm3fu8yc43x" }
+                };
                 // Посылаем параметры на сервер
                 // Может быть ответ в виде массива байт
                 var response = webClient.UploadValues(url, pars);
@@ -43,7 +45,7 @@ namespace SocialApp___Telegram_Broker
                 return str_response;
             }
         }
-        public static string checkEmailExist(string login, string password, string subscription_type, string hash_system, string motherBoardID, string processorID)
+        public static string CheckEmailExist(string login, string password, string subscription_type, string hash_system, string motherBoardID, string processorID)
         {
             string url = "https://kzac.ru/bot/registered.php";
             switch (subscription_type)
@@ -64,15 +66,17 @@ namespace SocialApp___Telegram_Broker
             using (var webClient = new WebClient())
             {
                 // Создаём коллекцию параметров
-                var pars = new NameValueCollection();
-                // Добавляем необходимые параметры в виде пар ключ, значение
-                pars.Add("email", Convert.ToString(login));
-                pars.Add("password", Convert.ToString(password));
-                pars.Add("subscription_type", Convert.ToString(subscription_type));
-                pars.Add("hash_system", Convert.ToString(hash_system));
-                pars.Add("motherBoardID", Convert.ToString(motherBoardID));
-                pars.Add("processorID", Convert.ToString(processorID));
-                pars.Add("key", "13sd54f68s7dr435v1b4nr3y6m8s7j3hd41cm3fu8yc43x");
+                var pars = new NameValueCollection
+                {
+                    // Добавляем необходимые параметры в виде пар ключ, значение
+                    { "email", Convert.ToString(login) },
+                    { "password", Convert.ToString(password) },
+                    { "subscription_type", Convert.ToString(subscription_type) },
+                    { "hash_system", Convert.ToString(hash_system) },
+                    { "motherBoardID", Convert.ToString(motherBoardID) },
+                    { "processorID", Convert.ToString(processorID) },
+                    { "key", "13sd54f68s7dr435v1b4nr3y6m8s7j3hd41cm3fu8yc43x" }
+                };
                 // Посылаем параметры на сервер
                 // Может быть ответ в виде массива байт
                 var response = webClient.UploadValues(url, pars);
@@ -80,7 +84,7 @@ namespace SocialApp___Telegram_Broker
                 return str_response_email;
             }
         }
-        public static String getMotherBoardID()
+        public static string GetMotherBoardID()
         {
             string MotherBoardID = "";
             try
@@ -99,7 +103,7 @@ namespace SocialApp___Telegram_Broker
                 return "NotFoundMotherBoardID";
             }
         }
-        public static string getProcessorID()
+        public static string GetProcessorID()
         {
             String ProcessorID = "";
             try

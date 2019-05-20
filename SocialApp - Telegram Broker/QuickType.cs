@@ -6,8 +6,16 @@ using Newtonsoft.Json.Converters;
 
 namespace QuickType
 {
+    public class JsonOnloadData
+    {
+        public string save_password { get; set; }
+        public string login { get; set; }
+        public string password { get; set; }
+        public string sms_activate_ru { get; set; }
+    }
     public class JsonPersonAPI
     {
+
         public string name { get; set; }
         public string surname { get; set; }
         public string gender { get; set; }
