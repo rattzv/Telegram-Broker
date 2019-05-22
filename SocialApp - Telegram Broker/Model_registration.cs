@@ -87,8 +87,38 @@ namespace SocialApp___Telegram_Broker
             return (IntPtr)((HiWord << 16) | (LoWord & 0xffff));
         }
 
+        public static string[] PersonGenerate(string gender, string region) {
+            string[] PersonGenerate_Lines = new string[3];
+            string JsonGenerateName = GetUinames(gender, region);
+            QuickType.JsonGetUinames list = Newtonsoft.Json.JsonConvert.DeserializeObject<QuickType.JsonGetUinames>(JsonGenerateName);
+            PersonGenerate_Lines[0] = list.name;
+            PersonGenerate_Lines[1] = list.surname;
+            Random rnd = new Random();
+            int value = rnd.Next(1960, 99999);
+            PersonGenerate_Lines[2] = Transliterations.Transliteration.Front(PersonGenerate_Lines[0] + PersonGenerate_Lines[1]) + value;
+            PersonGenerate_Lines[2] = PersonGenerate_Lines[2].ToLower();
+            return PersonGenerate_Lines;
+        }
         ////////////////////////////////Конец WINAPI////////////////////////////////
-        public static bool Test()
+        public static void OpenTelegramPortable()
+        {
+            System.Diagnostics.Process[] processlist = System.Diagnostics.Process.GetProcesses();
+            foreach (System.Diagnostics.Process process in processlist)
+            {
+
+                if (process.MainWindowHandle != IntPtr.Zero)
+                {
+                    string TelegramSearch = process.MainWindowTitle;
+                    string[] parts = TelegramSearch.Split(' ');
+                    if (parts[0] == "Telegram")
+                    {
+                        process.Kill();
+                    }
+                }
+            }
+            System.Diagnostics.Process.Start(@"Resources\Telegram.exe");
+        }
+            public static bool Test()
         {
             System.Diagnostics.Process.Start(@"Resources\Telegram.exe");
             Thread.Sleep(5000);
@@ -127,35 +157,50 @@ namespace SocialApp___Telegram_Broker
         public static string SwitchRegion(string region)
         {
             switch (region) {
-                case "Россия":
-                    region = "Russia";
-                    break;
-                case "Германия":
-                    region = "Germany";
-                    break;
-                case "Украина":
-                    region = "Ukraine";
-                    break;
                 case "Армения":
                     region = "Armenia";
                     break;
                 case "Австралия":
                     region = "Australia";
                     break;
-                case "Япония":
-                    region = "Japan";
+                case "Бельгия":
+                    region = "Belgium";
+                    break;
+                case "Канада":
+                    region = "Canada";
+                    break;
+                case "Китай":
+                    region = "China";
+                    break;
+                case "Эстония":
+                    region = "Estonia";
+                    break;
+                case "Финляндия":
+                    region = "Finland";
+                    break;
+                case "Франция":
+                    region = "France";
+                    break;
+                case "Германия":
+                    region = "Germany";
                     break;
                 case "Индия":
                     region = "India";
                     break;
-                case "Словакия":
-                    region = "Slovakia";
+                case "Италия":
+                    region = "Italy";
                     break;
-                case "Швеция":
-                    region = "Sweden";
+                case "Япония":
+                    region = "Japan";
                     break;
                 case "США":
                     region = "United States";
+                    break;
+                case "Россия":
+                    region = "Russia";
+                    break;
+                case "Украина":
+                    region = "Ukraine";
                     break;
             }
             return region;

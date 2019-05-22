@@ -107,22 +107,33 @@ namespace SocialApp___Telegram_Broker
                         default:
                             if (bunifuCheckbox1.Checked == true)
                             {
-                                string Fileini = File.ReadAllText("system.ini", Encoding.UTF8);
-                                Newtonsoft.Json.Linq.JObject FileiniJson = Newtonsoft.Json.Linq.JObject.Parse(Fileini);
-                                FileiniJson["save_password"] = "true";
-                                FileiniJson["login"] = bunifuMaterialTextbox1.Text;
-                                FileiniJson["password"] = bunifuMaterialTextbox2.Text;
-                                string output = JsonConvert.SerializeObject(FileiniJson);
-                                System.IO.File.WriteAllText("system.ini", output);
+                                if (File.Exists("system.ini"))
+                                {
+                                    string Fileini = File.ReadAllText("system.ini", Encoding.UTF8);
+                                    Newtonsoft.Json.Linq.JObject FileiniJson = Newtonsoft.Json.Linq.JObject.Parse(Fileini);
+                                    FileiniJson["save_password"] = "true";
+                                    FileiniJson["login"] = bunifuMaterialTextbox1.Text;
+                                    FileiniJson["password"] = bunifuMaterialTextbox2.Text;
+                                    string output = JsonConvert.SerializeObject(FileiniJson);
+                                    System.IO.File.WriteAllText("system.ini", output);
+                                }
+                                else
+                                {
+                                    string a = "{\"save_password\":\"false\",\"login\":\"none\",\"password\":\"none\"}";
+                                    File.WriteAllText("system.ini", a);
+                                    string Fileini = File.ReadAllText("system.ini", Encoding.UTF8);
+                                    Newtonsoft.Json.Linq.JObject FileiniJson = Newtonsoft.Json.Linq.JObject.Parse(Fileini);
+                                    FileiniJson["save_password"] = "true";
+                                    FileiniJson["login"] = bunifuMaterialTextbox1.Text;
+                                    FileiniJson["password"] = bunifuMaterialTextbox2.Text;
+                                    string output = JsonConvert.SerializeObject(FileiniJson);
+                                    System.IO.File.WriteAllText("system.ini", output);
+                                }
                             }
-                            else {
-                                string Fileini = File.ReadAllText("system.ini", Encoding.UTF8);
-                                Newtonsoft.Json.Linq.JObject FileiniJson = Newtonsoft.Json.Linq.JObject.Parse(Fileini);
-                                FileiniJson["save_password"] = "false";
-                                FileiniJson["login"] = "none";
-                                FileiniJson["password"] = "none";
-                                string output = JsonConvert.SerializeObject(FileiniJson);
-                                System.IO.File.WriteAllText("system.ini", output);
+                            else
+                            {
+                                string a = "{\"save_password\":\"false\",\"login\":\"none\",\"password\":\"none\"}";
+                                File.WriteAllText("system.ini", a);
                             }
                             this.label6.Text = "";
                             this.Hide();
@@ -235,10 +246,6 @@ namespace SocialApp___Telegram_Broker
                     }
                     bunifuCheckbox1.Checked = true;
                 }
-            }
-            else {
-                string a = "{\"save_password\":\"false\",\"login\":\"none\",\"password\":\"none\",\"sms_activate_ru\":\"none\"}";
-                File.WriteAllText("system.ini", a);
             }
         }
     }

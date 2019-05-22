@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SocialApp___Telegram_Broker
 {
     class Sms_services
     {
-        public static string GetBallance(string ServiceName, string ApiKey)
+        public static double GetBallance(string ServiceName, string ApiKey)
         {
             string url;
             string response;
@@ -27,14 +30,21 @@ namespace SocialApp___Telegram_Broker
                     }
                     pattern = @"(?<=ACCESS_BALANCE:).*";
                     result = System.Text.RegularExpressions.Regex.Match(response, pattern).Value;
+
+
+
                     break;
                 default:
                     result = "error";
                     break;
             }
-            return result;
+            CultureInfo temp_culture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
+            double ResponceBallance_double = double.Parse(result);
+            Thread.CurrentThread.CurrentCulture = temp_culture;
+            return ResponceBallance_double;
         }
-        public static string GetAmmountPhone(string ServiceName, string ApiKey, string Country)
+        public static int GetAmmountPhone(string ServiceName, string ApiKey, string Country)
         {
             string url;
             string response;
@@ -53,10 +63,9 @@ namespace SocialApp___Telegram_Broker
                     result = System.Text.RegularExpressions.Regex.Match(response, pattern).Value;
                     break;
                 default:
-                    result = "error";
                     break;
             }
-            return result;
+            return Convert.ToInt32(result);
         }
     }
 }

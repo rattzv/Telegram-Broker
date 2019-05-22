@@ -6,20 +6,22 @@ using Newtonsoft.Json.Converters;
 
 namespace QuickType
 {
+    public class ApiServices
+    {
+        public string sms_activate_ru { get; set; }
+    }
+    public class JsonGetUinames
+    {
+        public string name { get; set; }
+        public string surname { get; set; }
+        public string gender { get; set; }
+        public string region { get; set; }
+    }
     public class JsonOnloadData
     {
         public string save_password { get; set; }
         public string login { get; set; }
         public string password { get; set; }
-        public string sms_activate_ru { get; set; }
-    }
-    public class JsonPersonAPI
-    {
-
-        public string name { get; set; }
-        public string surname { get; set; }
-        public string gender { get; set; }
-        public string region { get; set; }
     }
     public class Account
     {
@@ -31,7 +33,7 @@ namespace QuickType
         public string renewal_counter { get; set; }
     }
 
-    public partial class ParserApi
+    public partial class ParsingApi
     {
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public string? Id { get; set; }
@@ -355,14 +357,14 @@ namespace QuickType
         public string? Bytes { get; set; }
     }
 
-    public partial class ParserApi
+    public partial class ParsingApi
     {
-        public static ParserApi FromJson(string? json) => JsonConvert.DeserializeObject<ParserApi>(json, QuickType.Converter.Settings);
+        public static ParsingApi FromJson(string? json) => JsonConvert.DeserializeObject<ParsingApi>(json, QuickType.Converter.Settings);
     }
 
     public static class Serialize
     {
-        public static string? ToJson(this ParserApi self) => JsonConvert.SerializeObject(self, QuickType.Converter.Settings);
+        public static string? ToJson(this ParsingApi self) => JsonConvert.SerializeObject(self, QuickType.Converter.Settings);
     }
 
     internal static class Converter

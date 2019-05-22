@@ -27,11 +27,11 @@ namespace SocialApp___Telegram_Broker
             }
             return parsechat_status;
         }
-        public static string parsAPI(CancellationToken token, string chatname, Worksheet FormPars)
+        public static string ParsingAPI(CancellationToken token, string chatname, Worksheet FormPars)
         {
             FormPars.label54.Invoke(new Action(() => FormPars.label54.Text = "выполняется..."));
             FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Начало работы" + Environment.NewLine)));
-            string url = "https://kzac.ru/bot/api/parser/index.php";
+            string url = "https://kzac.ru/bot/api/Parsing/index.php";
             FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Подготовка запроса..." + Environment.NewLine)));
             using (var webClient = new WebClient())
             {
@@ -88,7 +88,7 @@ namespace SocialApp___Telegram_Broker
                             FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Загрузка файла..." + Environment.NewLine)));
                             Directory.CreateDirectory(Application.StartupPath + @"\fullfilearray_system");
                             WebClient wc = new WebClient();
-                            Uri ui = new Uri("https://kzac.ru/bot/api/parser/parseDone/" + filenameLoad);
+                            Uri ui = new Uri("https://kzac.ru/bot/api/Parsing/parseDone/" + filenameLoad);
                             string path = Application.StartupPath + @"\fullfilearray_system\" + ui.Segments[5];
                             wc.DownloadFile(ui, path);
                             FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Загрузка завершена" + Environment.NewLine)));
@@ -118,14 +118,16 @@ namespace SocialApp___Telegram_Broker
         }
         public static string convertJsonToDataGrid(CancellationToken token, string result, Worksheet FormPars, bool usernameCheck, bool wasRecently, bool wasAWeekAgo, bool wasAMonthAgo, int minTime, int maxTime, string status_flag, string parsingOnly)
         {
+
             int minTimeIn = minTime;
             int userOnline = 0;
             int i = 1;
             string s = File.ReadAllText(result, Encoding.UTF8);
-            QuickType.ParserApi list = Newtonsoft.Json.JsonConvert.DeserializeObject<QuickType.ParserApi>(s);
+            QuickType.ParsingApi list = Newtonsoft.Json.JsonConvert.DeserializeObject<QuickType.ParsingApi>(s);
             FormPars.label68.Invoke(new Action(() => FormPars.label68.Text = "Чат: " + list.Title));
             FormPars.label72.Invoke(new Action(() => FormPars.label72.Text = list.Username));
             FormPars.label70.Invoke(new Action(() => FormPars.label70.Text = "Всего участников - " + list.ParticipantsCount));
+            FormPars.bunifuCustomDataGrid1.Invoke(new Action(() => FormPars.bunifuCustomDataGrid1.Rows.Clear()));
             FormPars.bunifuCustomTextbox5.Invoke(new Action(() => FormPars.bunifuCustomTextbox5.AppendText("[" + DateTime.Now + "] " + "Начало разбора и фильтрации данных..." + Environment.NewLine)));
             foreach (QuickType.Participant r in list.Participants)
             {

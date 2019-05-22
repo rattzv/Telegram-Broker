@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SocialApp___Telegram_Broker
 {
@@ -84,11 +86,89 @@ namespace SocialApp___Telegram_Broker
             return (IntPtr)((HiWord << 16) | (LoWord & 0xffff));
         }
 
-        public static void ButtonClick(IntPtr hwnd, int x, int y) {
+        public class Win32
+        {
+
+            [DllImport("user32.dll")]
+            public static extern IntPtr GetDC(IntPtr hWnd);
+            [DllImport("user32.dll")]
+            public static extern Int32 ReleaseDC(IntPtr hwnd, IntPtr hdc);
+            [DllImport("gdi32.dll")]
+            public static extern uint GetPixel(IntPtr hdc, int nXPos, int nYPos);
+            public static System.Drawing.Color GetPixelColor(int x, int y)
+            {
+                IntPtr hdc = GetDC(IntPtr.Zero);
+                uint pixel = GetPixel(hdc, x, y);
+                ReleaseDC(IntPtr.Zero, hdc);
+                Color color = Color.FromArgb((int)(pixel & 0x000000FF),
+                             (int)(pixel & 0x0000FF00) >> 8,
+                             (int)(pixel & 0x00FF0000) >> 16);
+                return color;
+            }
+        }
+
+        public static void ButtonClick(IntPtr hwnd, int x, int y)
+        {
             SetFocus(hwnd);
             SendMessage(hwnd, WM_MOUSEACTIVATE, IntPtr.Zero, MakeLParam(x, y));
             SendMessage(hwnd, WM_LBUTTONDOWN, (IntPtr)MK_LBUTTON, MakeLParam(x, y));
             SendMessage(hwnd, WM_LBUTTONUP, IntPtr.Zero, MakeLParam(x, y));
+        }
+        public static IntPtr GetHandle()
+        {
+            IntPtr hwnd = IntPtr.Zero;
+            System.Diagnostics.Process[] processlist = System.Diagnostics.Process.GetProcesses();
+            foreach (System.Diagnostics.Process process in processlist)
+            {
+
+                if (process.MainWindowHandle != IntPtr.Zero)
+                {
+                    string TelegramSearch = process.MainWindowTitle;
+                    string[] parts = TelegramSearch.Split(' ');
+                    if (parts[0] == "Telegram")
+                    {
+                        hwnd = process.MainWindowHandle;
+                    }
+                }
+            }
+            MoveWindow(hwnd, 0, 0, 800, 600, true);
+            return hwnd;
+        }
+        public static string GetPixel(int x, int y) {
+            IntPtr hwnd = GetHandle();
+            IntPtr hDC = Win32.GetDC(hwnd);
+            uint colorRef = Win32.GetPixel(hDC, x, y);
+            Color color = Color.FromArgb((int)(colorRef & 0x000000FF), (int)(colorRef & 0x0000FF00) >> 8, (int)(colorRef & 0x00FF0000) >> 16);
+            Win32.ReleaseDC(hwnd, hDC);
+            string HTMLColor = color.R.ToString("X2") + color.G.ToString("X2") + color.B.ToString("X2");
+            return HTMLColor;
+        }
+        public static string CheckConnectProxy()
+        {
+            string HTMLColorConnect = null;
+            string HTMLColorBlue = null;
+            int i = 0;
+            do
+            {
+                HTMLColorConnect = GetPixel(8, 585);
+                Thread.Sleep(1 * 40);
+                //Проверка щита
+                HTMLColorBlue = GetPixel(21, 577);
+                //Конец проверки щита
+                i++;
+            }
+            while ((HTMLColorConnect == "CFCFCF") & (i < 125) & (HTMLColorBlue != "40A7E3"));
+            if (HTMLColorBlue == "40A7E3")
+            {
+                return "true";
+            }
+            else if (HTMLColorConnect == "CFCFCF")
+            {
+                return "false";
+            }
+            else {
+                return "aaa";
+            }
         }
     }
 }

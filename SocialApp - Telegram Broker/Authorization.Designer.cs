@@ -142,7 +142,7 @@
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(531, 608);
+            this.tabControl1.Size = new System.Drawing.Size(531, 632);
             this.tabControl1.TabIndex = 8;
             // 
             // tabPage1
@@ -364,7 +364,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(523, 582);
+            this.tabPage2.Size = new System.Drawing.Size(523, 606);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             // 

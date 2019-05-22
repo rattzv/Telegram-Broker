@@ -19,9 +19,9 @@ namespace SocialApp___Telegram_Broker
     {
         public static void exportCSV(Worksheet FormPars, string fileName)
         {
-            Directory.CreateDirectory(Application.StartupPath + @"\Parser");
+            Directory.CreateDirectory(Application.StartupPath + @"\Parsing");
 
-            var fs = new FileStream(Application.StartupPath + @"\Parser\" + fileName + ".csv", FileMode.CreateNew);
+            var fs = new FileStream(Application.StartupPath + @"\Parsing\" + fileName + ".csv", FileMode.CreateNew);
             using (var sw = new StreamWriter(fs, Encoding.Default))
             {
                 var writer = new CsvWriter(sw);
@@ -63,7 +63,7 @@ namespace SocialApp___Telegram_Broker
                     }
                 }
             }
-            FormPars.PushMessage.ShowBalloonTip(1000, "Файл успешно сохранен по пути 'Parser/"+ fileName+"'", "Файл сохранен", ToolTipIcon.Info);
+            FormPars.PushMessage.ShowBalloonTip(1000, "Файл успешно сохранен по пути 'Parsing/"+ fileName+"'", "Файл сохранен", ToolTipIcon.Info);
         }
     }
 }
