@@ -77,6 +77,10 @@ namespace SocialApp___Telegram_Broker
         [DllImport("gdi32.dll")]
         static extern int GetPixel(IntPtr hDC, int x, int y);
 
+        [return: MarshalAs(UnmanagedType.Bool)]
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        public static extern bool BlockInput([In, MarshalAs(UnmanagedType.Bool)] bool fBlockIt);
+
         public static IntPtr MakeWParam(int LoWord, int HiWord)
         {
             return (IntPtr)((HiWord << 16) + (LoWord & 0xffff));
@@ -86,8 +90,34 @@ namespace SocialApp___Telegram_Broker
         {
             return (IntPtr)((HiWord << 16) | (LoWord & 0xffff));
         }
-
-        public static string[] PersonGenerate(string gender, string region) {
+        public static string SetCountry(string country) {
+            switch (country) {
+                case "Россия":
+                    country = "Russia";
+                    break;
+            }
+            return country;
+        }
+        public static void EnterPhoneNumber(IntPtr hwnd, string phone, string Country)
+        {
+            MoveWindow(hwnd, 0, 0, 800, 600, true);
+            string StatusConnect = Functional_actions.CheckConnectProxy();
+            if (StatusConnect == "true" || StatusConnect == "NO_PROXY")
+            {
+                Functional_actions.ButtonClick(hwnd, 405, 430);
+                Functional_actions.ButtonClick(hwnd, 365, 244);
+                Functional_actions.ButtonClick(hwnd, 293, 113);
+                Functional_actions.EnterinTextInALoop(hwnd, Country);
+                Functional_actions.SendEnter(hwnd);
+                Functional_actions.EnterinTextInALoop(hwnd, phone);
+                Functional_actions.ButtonClick(hwnd, 501, 412);
+            }
+            else {
+                throw new Exception();
+            }
+        }
+        public static string[] PersonGenerate(string gender, string region)
+        {
             string[] PersonGenerate_Lines = new string[3];
             string JsonGenerateName = GetUinames(gender, region);
             QuickType.JsonGetUinames list = Newtonsoft.Json.JsonConvert.DeserializeObject<QuickType.JsonGetUinames>(JsonGenerateName);
@@ -116,9 +146,10 @@ namespace SocialApp___Telegram_Broker
                     }
                 }
             }
+            Thread.Sleep(1500);
             System.Diagnostics.Process.Start(@"Resources\Telegram.exe");
         }
-            public static bool Test()
+        public static bool Test()
         {
             System.Diagnostics.Process.Start(@"Resources\Telegram.exe");
             Thread.Sleep(5000);
@@ -142,21 +173,23 @@ namespace SocialApp___Telegram_Broker
             Functional_actions.ButtonClick(hwnd, 501, 412);
             return true;
         }
-        public static string GetUinames(string gender, string region) {
+        public static string GetUinames(string gender, string region)
+        {
             string response;
             using (var webClient = new WebClient())
             {
                 string url = "https://uinames.com/api/?";
                 url += "gender=" + gender;
                 url += "&region=" + region;
-                webClient.Encoding = System.Text.Encoding.UTF8;
+                webClient.Encoding = Encoding.UTF8;
                 response = webClient.DownloadString(url);
             }
             return response;
         }
         public static string SwitchRegion(string region)
         {
-            switch (region) {
+            switch (region)
+            {
                 case "Армения":
                     region = "Armenia";
                     break;

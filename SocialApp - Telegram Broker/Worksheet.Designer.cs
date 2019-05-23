@@ -2628,13 +2628,14 @@
             this.bunifuDropdown4.DisabledColor = System.Drawing.Color.Gray;
             this.bunifuDropdown4.ForeColor = System.Drawing.Color.White;
             this.bunifuDropdown4.Items = new string[] {
-        "Россия"};
+        "Россия",
+        "Казахстан"};
             this.bunifuDropdown4.Location = new System.Drawing.Point(256, 455);
             this.bunifuDropdown4.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuDropdown4.Name = "bunifuDropdown4";
             this.bunifuDropdown4.NomalColor = System.Drawing.Color.SeaGreen;
             this.bunifuDropdown4.onHoverColor = System.Drawing.Color.SeaGreen;
-            this.bunifuDropdown4.selectedIndex = 0;
+            this.bunifuDropdown4.selectedIndex = -1;
             this.bunifuDropdown4.Size = new System.Drawing.Size(252, 28);
             this.bunifuDropdown4.TabIndex = 5;
             // 

@@ -71,14 +71,15 @@ namespace SocialApp___Telegram_Broker
             label28.Text = Convert.ToString(NrOfDays);
             label30.Text = Convert.ToString(NrOfDays);
             int n = bunifuDropdown10.Items.Length;
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; i++)
+            {
                 bunifuDropdown10.selectedIndex = i;
                 bunifuDropdown3.AddItem(bunifuDropdown10.selectedValue);
             }
             bunifuDropdown3.selectedIndex = 0;
             if (File.Exists("ApiServices.ini"))
             {
-                string Fileini = File.ReadAllText("system.ini", Encoding.UTF8);
+                string Fileini = File.ReadAllText("ApiServices.ini", Encoding.UTF8);
                 QuickType.ApiServices list = Newtonsoft.Json.JsonConvert.DeserializeObject<QuickType.ApiServices>(Fileini);
                 if (list.sms_activate_ru != "none")
                 {
@@ -542,38 +543,72 @@ namespace SocialApp___Telegram_Broker
         {
             string ServiceName = bunifuDropdown10.selectedValue;
             string ApiKey = bunifuMaterialTextbox5.Text;
-            double ResponceBallance = 0;
+            string Country = bunifuDropdown4.selectedValue;
+            double GetCurrentBalance = 0;
             int GetAmmountPhone = 0;
-            string gender = bunifuDropdown2.selectedValue;
-            string region = bunifuDropdown9.selectedValue;
-            gender = Model_registration.SwitchGender(gender);
-            region = Model_registration.SwitchRegion(region);
+            string Gender = bunifuDropdown2.selectedValue;
+            string Region = bunifuDropdown9.selectedValue;
+            Gender = Model_registration.SwitchGender(Gender);
+            Region = Model_registration.SwitchRegion(Region);
             string[] PersonGenerate_lines;
+            string[] PhoneNumber;
+            string NumberWithoutCodeContry;
             int i = Convert.ToInt32(bunifuCustomTextbox4.Text);
             int n = 0;
+            int NoNumbersCount = 0;
             this.tokenCancelReg = new CancellationTokenSource();
             CancellationToken token = tokenCancelReg.Token;
             await Task.Run(
                 async () =>
                 {
-                    await Task.Run(() => Model_registration.OpenTelegramPortable());
-                    await Task.Run(() => ResponceBallance = Sms_services.GetBallance(ServiceName, ApiKey));
-                    bunifuCustomTextbox3.Invoke(new Action(() => bunifuCustomTextbox3.AppendText("[" + DateTime.Now + "] " + "Текущий баланс: " + ResponceBallance + " руб." + Environment.NewLine)));
-                    await Task.Run(() => GetAmmountPhone = Sms_services.GetAmmountPhone(ServiceName, ApiKey, "0"));
-                    bunifuCustomTextbox3.Invoke(new Action(() => bunifuCustomTextbox3.AppendText("[" + DateTime.Now + "] " + "Доступно номеров: " + GetAmmountPhone + " шт." + Environment.NewLine)));
-                    ResponceBallance = Sms_services.GetBallance(ServiceName, ApiKey);
-                    if ((ResponceBallance > 8) & (GetAmmountPhone > 1))
+                    do
                     {
-                        do
+                        await Task.Run(() => GetCurrentBalance = Sms_services.GetBallance(ServiceName, ApiKey));
+                        bunifuCustomTextbox3.Invoke(new Action(() => bunifuCustomTextbox3.AppendText("[" + DateTime.Now + "] " + "Текущий баланс: " + GetCurrentBalance + " руб." + Environment.NewLine)));
+                        await Task.Run(() => GetAmmountPhone = Sms_services.GetAmmountPhone(ServiceName, ApiKey, "0"));
+                        bunifuCustomTextbox3.Invoke(new Action(() => bunifuCustomTextbox3.AppendText("[" + DateTime.Now + "] " + "Доступно номеров: " + GetAmmountPhone + " шт." + Environment.NewLine)));
+                        if (GetCurrentBalance > 8)
                         {
-                            PersonGenerate_lines = Model_registration.PersonGenerate(gender, region);
-                            bunifuCustomTextbox3.Invoke(new Action(() => bunifuCustomTextbox3.AppendText("[" + DateTime.Now + "] " + "Сгенерирована личность: " + PersonGenerate_lines[0] + " " + PersonGenerate_lines[1] + " | " + PersonGenerate_lines[2] + Environment.NewLine)));
-                            n++;
-                        } while (n < i);
+                            if (GetAmmountPhone >= 1)
+                            {
+                                await Task.Run(() => Model_registration.OpenTelegramPortable());
+                                PersonGenerate_lines = Model_registration.PersonGenerate(Gender, Region);
+                                bunifuCustomTextbox3.Invoke(new Action(() => bunifuCustomTextbox3.AppendText("[" + DateTime.Now + "] " + "Сгенерирована личность: " + PersonGenerate_lines[0] + " " + PersonGenerate_lines[1] + " | " + PersonGenerate_lines[2] + Environment.NewLine)));
+                                PhoneNumber = Sms_services.GetPhoneNumber(ServiceName, ApiKey, Country);
+                                if (PhoneNumber[0] == "NO_NUMBERS")
+                                {
+                                    if (NoNumbersCount > 6) {
+                                        bunifuCustomTextbox3.Invoke(new Action(() => bunifuCustomTextbox3.AppendText("[" + DateTime.Now + "] " + "Нет доступных номеров, закончилось время ожидания." + Environment.NewLine)));
+                                        break;
+                                    }
+                                    bunifuCustomTextbox3.Invoke(new Action(() => bunifuCustomTextbox3.AppendText("[" + DateTime.Now + "] " + "Нет доступных номеров, ожидание 10 секунд." + Environment.NewLine)));
+                                    NoNumbersCount++;
+                                    Thread.Sleep(1000 * 10);
+
+                                }
+                                else
+                                {
+                                    bunifuCustomTextbox3.Invoke(new Action(() => bunifuCustomTextbox3.AppendText("[" + DateTime.Now + "] " + "Получен номер: " + PhoneNumber[0] + Environment.NewLine)));
+                                    IntPtr hwnd = Functional_actions.GetHandle();
+                                    Country = Model_registration.SetCountry(Country);
+                                    NumberWithoutCodeContry = Sms_services.DelCountryCodeByNumber(ServiceName, Country, PhoneNumber[0]);
+                                    Model_registration.EnterPhoneNumber(hwnd, NumberWithoutCodeContry, Country);
+                                    n++;
+                                }
+                            }
+                            else {
+                                bunifuCustomTextbox3.Invoke(new Action(() => bunifuCustomTextbox3.AppendText("[" + DateTime.Now + "] " + "Нет доступных номеров, попробуте позднее, либо используйте другой сервис" + Environment.NewLine)));
+                                break;
+                            }
+                            
+                        }
+                        else
+                        {
+                            bunifuCustomTextbox3.Invoke(new Action(() => bunifuCustomTextbox3.AppendText("[" + DateTime.Now + "] " + "Недостаточно средств для заказа номера, пополните баланс в личном кабинете" + Environment.NewLine)));
+                            break;
+                        }
                     }
-                    else {
-                        bunifuCustomTextbox3.Invoke(new Action(() => bunifuCustomTextbox3.AppendText("[" + DateTime.Now + "] " + "Недостаточно средств для регистрации аккаунта или нет свободных номеров." + Environment.NewLine)));
-                    }
+                    while (n < i);
                 }, token);
         }
 
@@ -615,15 +650,17 @@ namespace SocialApp___Telegram_Broker
                     PushMessage.ShowBalloonTip(1000, "API ключ успешно сохранен", "Сохранение завершено", ToolTipIcon.Info);
                 }
             }
-            catch {
+            catch
+            {
                 FormPars.PushMessage.ShowBalloonTip(1000, "Произошла ошибка при сохранении", "Ошибка сохранения", ToolTipIcon.Warning);
             }
-           
+
         }
 
         private void Button11_Click(object sender, EventArgs e)
         {
             
         }
+
     }
 }

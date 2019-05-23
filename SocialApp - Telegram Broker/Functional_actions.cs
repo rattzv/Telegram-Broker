@@ -106,13 +106,21 @@ namespace SocialApp___Telegram_Broker
                 return color;
             }
         }
-
+        public static void EnterinTextInALoop(IntPtr hwnd, string line)
+        {
+            for (int i = 0; i < line.Length; i++)
+            {
+                SendMessage(hwnd, WM_CHAR, (IntPtr)line[i], (IntPtr)(MapVirtualKey('6', 0 << 16 | 1)));
+            }
+            Thread.Sleep(500);
+        }
         public static void ButtonClick(IntPtr hwnd, int x, int y)
         {
             SetFocus(hwnd);
             SendMessage(hwnd, WM_MOUSEACTIVATE, IntPtr.Zero, MakeLParam(x, y));
             SendMessage(hwnd, WM_LBUTTONDOWN, (IntPtr)MK_LBUTTON, MakeLParam(x, y));
             SendMessage(hwnd, WM_LBUTTONUP, IntPtr.Zero, MakeLParam(x, y));
+            Thread.Sleep(500);
         }
         public static IntPtr GetHandle()
         {
@@ -134,7 +142,8 @@ namespace SocialApp___Telegram_Broker
             MoveWindow(hwnd, 0, 0, 800, 600, true);
             return hwnd;
         }
-        public static string GetPixel(int x, int y) {
+        public static string GetPixel(int x, int y)
+        {
             IntPtr hwnd = GetHandle();
             IntPtr hDC = Win32.GetDC(hwnd);
             uint colorRef = Win32.GetPixel(hDC, x, y);
@@ -166,9 +175,15 @@ namespace SocialApp___Telegram_Broker
             {
                 return "false";
             }
-            else {
-                return "aaa";
+            else
+            {
+                return "NO_PROXY";
             }
+        }
+        public static void SendEnter(IntPtr hwnd)
+        {
+            SendMessage(hwnd, WM_KEYDOWN, (IntPtr)VK_RETURN, (IntPtr)(MapVirtualKey(VK_RETURN, 0) << 16 | 1));
+            Thread.Sleep(500);
         }
     }
 }
